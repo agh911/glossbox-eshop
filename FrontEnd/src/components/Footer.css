@@ -1,0 +1,18 @@
+footer {
+    background-color: #f9f4ef;
+}
+
+.footer-section>p {
+    font-size: smaller;
+    margin-bottom: .5rem;
+}
+
+.footer-section>form>label {
+    max-width: 350px;
+    font-size: small;
+}
+
+input[type="email"] {
+    border: none;
+    border-radius: 11px;
+}

@@ -1,0 +1,103 @@
+@import url('https://fonts.cdnfonts.com/css/sragentina');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* body {
+    background-color: #eff0f3;
+} */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#hero {
+    position: relative;
+    z-index: 1;
+}
+
+.row>* {
+    padding: 0;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+    color: #fffffe;
+}
+
+.hero-content>p {
+    min-width: 300px
+}
+
+.shop-btn {
+    font-weight: 500;
+    background-color: #202020;
+    color: #fffffe;
+    border: none;
+    padding: .85em 4em;
+    border-radius: 11px;
+    transition: .5s ease-in-out;
+}
+
+.shop-btn:hover {
+    background-color: #9fa8d8;
+}
+
+.img-container {
+    width: 100%;
+    max-height: 750px;
+    /* min-height: max-content; */
+    overflow: hidden;
+    position: relative;
+}
+
+.cropped-image img {
+    width: 100%;
+    height: auto;
+}
+
+.divider {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.divider-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    fill: #ffffff;
+}
+
+.home-card {
+    width: 280px;
+}
+
+.quiz {
+    background-color: #f9f4ef;
+}
+
+.expert-help-img {
+    width: 253.33px;
+    height: 253.33px;
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.expert-help-desc {
+    width: 253px;
+}
+
+@media (max-width: 768px) {
+    .hero-desc {
+        top: 20%;
+        /* Adjust as needed to center the text vertically */
+        transform: translateY(-50%);
+    }
+}
