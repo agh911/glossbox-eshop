@@ -1,0 +1,34 @@
+.product-card {
+    max-width: 304px;
+    max-height: 395px;
+}
+
+.product-card-img {
+    width: 303.33px;
+    height: 303.33px;
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.product-card-img img,
+.basket-card-img img,
+.expert-help img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.p-name {
+    text-align: left;
+}
+
+.p-price {
+    font-weight: 500;
+}
+
+.basket-card-img {
+    width: 150.33px;
+    height: 150.33px;
+    border-radius: 11px;
+    overflow: hidden;
+}

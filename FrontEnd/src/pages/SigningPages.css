@@ -1,0 +1,16 @@
+.sign-in-button,
+.sign-up-button {
+    width: 360px;
+    font-weight: 500;
+    background-color: #9fa8d8;
+    color: #fffffe;
+    border: none;
+    padding: .85em 4em;
+    border-radius: 11px;
+    transition: .5s ease-in-out;
+}
+
+.sign-in-button:hover,
+.sign-up-button:hover {
+    background-color: #6d7cd2;
+}
