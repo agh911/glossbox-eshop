@@ -1,18 +1,49 @@
-import React from 'react';
-import './ProductCard.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = () => {
+import './Card.css';
+
+const ProductCard = ({ productData, addToBasket }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleClick = (id) => {
+        navigate(`/product/${id}`);
+    }
+
     return (
-        <div className="product-card">
+        <div className="product-card mb-3" onClick={() => handleClick(productData._id)}>
             <div className="product-card-img">
-                <img src="https://imgs.search.brave.com/KC8AFOkWNp-UUPIsLyTWRu2LxIDqSxefRXyBHtWYgi0/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/YnlyZGllLmNvbS90/aG1iL2Jtckh6enJZ/b0piTm5NaVVtUEdj/V3dLVklkZz0vMTAw/MHgxMDAwL2ZpbHRl/cnM6bm9fdXBzY2Fs/ZSgpOm1heF9ieXRl/cygxNTAwMDApOnN0/cmlwX2ljYygpL0hF/Uk8tMDBkYThkMWY3/YzkxNDU2Yjg2Y2Rk/YjdiMjZhZmUxMDMu/anBn" alt="" />
+                <img src={productData.imageUrl} alt="" />
             </div>
-            <div className="product-name-and-price d-flex mx-1 mt-2">
-                <p className="p-name me-1">The Ordinary Glycolic Acid 7% Toning Solution 240ml</p>
-                <p className="p-price">£19.22</p>
+            <div className="d-flex flex-column">
+                <div className="product-name-and-price d-flex justify-content-between mx-1 mt-2">
+                    <p className="p-name me-1">{productData.name}</p>
+                    <p className="p-price">£{productData.price}</p>
+                </div>
+                <button className="flex-grow"
+                    onClick={() => addToBasket(productData)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
+                    Add to bag <ion-icon name={isHovered ? 'bag' : 'bag-outline'} />
+                </button>
             </div>
-        </div>
+        </div >
     );
 }
 
 export default ProductCard;
+
+// import PropTypes from 'prop-types';
+
+// ProductCard.propTypes = {
+//     product: PropTypes.shape({
+//         image: PropTypes.string.isRequired,
+//         name: PropTypes.string.isRequired,
+//         price: PropTypes.number.isRequired,
+//     }).isRequired,
+// };
+
+// export default ProductCard;

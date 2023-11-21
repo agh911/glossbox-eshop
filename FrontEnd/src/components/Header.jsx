@@ -29,8 +29,8 @@ const Header = () => {
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                             <button className="btn" type="submit"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
-                        <button className="btn"><ion-icon name="person-outline"></ion-icon></button>
-                        <button className="btn"><ion-icon name="bag-outline"></ion-icon></button>
+                        <a className='nav-item mx-2' href='/profile'><ion-icon name="person-outline"></ion-icon></a>
+                        <a className='nav-item mx-2' href='/basket'><ion-icon name="bag-outline"></ion-icon></a>
                     </div>
                 </div>
             </nav>

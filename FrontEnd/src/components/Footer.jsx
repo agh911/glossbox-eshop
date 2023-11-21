@@ -37,18 +37,18 @@ const Footer = () => {
                     <div className="footer-section">
                         <h5 className="fs">Stay in touch</h5>
                         <form onSubmit={handleSubscription}>
-                            <div>
+                            <div className="mb-1">
                                 <input
                                     type="email"
                                     name="email"
                                     placeholder="Enter Your Email"
                                     required
                                 />
-                                <button type="submit">Subscribe</button>
+                                <button className="footer-btn" type="submit">Subscribe</button>
                             </div>
-                            <label className="mt-1">
+                            <label className="mt-1 mb-2">
                                 <input type="checkbox" name="newsletter-consent" id="newsletter-consent" required />
-                                Yes, I consent to receive emails from <span className="fs">glossbox</span>. I can unsubscribe at any time by clicking the link at the bottom of our emails. Privacy Policy and Terms of Use.
+                                Yes, I consent to receive emails from <span className="fs">glossbox</span>. Privacy Policy and Terms of Use.
                             </label>
                         </form>
                         <div className="social-icons">
@@ -61,7 +61,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="footer-bottom mt-5">
+                <div className="footer-bottom mt-5 mb-1">
                     <p>&copy; {new Date().getFullYear()} GlossBox. All rights reserved.</p>
                 </div>
             </div>

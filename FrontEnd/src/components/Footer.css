@@ -14,5 +14,24 @@ footer {
 
 input[type="email"] {
     border: none;
-    border-radius: 11px;
+    border-radius: 11px 0 0 11px;
+    padding: .55em .85em;
+}
+
+.footer-btn {
+    font-weight: 500;
+    background-color: #202020;
+    color: #fffffe;
+    border: none;
+    padding: .55em 1.25em;
+    border-radius: 0 11px 11px 0;
+    transition: .5s ease-in-out;
+}
+
+.footer-btn:hover {
+    background-color: #9fa8d8;
+}
+
+.footer-bottom {
+    font-size: small;
 }

@@ -2,7 +2,9 @@ import React from 'react';
 import "./Home.css";
 import ProductCard from '../components/ProductCard';
 
-const Home = () => {
+const Home = ({ productData }) => {
+    const firstThreeProducts = productData.length > 0 ? productData.slice(0, 3) : [];
+
     return (
         <>
             <div id="hero" className="container-fluid img-container">
@@ -20,16 +22,18 @@ const Home = () => {
                     <button className="shop-btn mt-3"><a href="/shop">SHOP NOW</a></button>
                 </div>
                 <div className="divider">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#ffffff" fill-opacity="1" d="M0,256L1440,160L1440,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#ffffff" fillOpacity="1" d="M0,256L1440,160L1440,320L0,320Z"></path></svg>
                 </div>
             </div>
             <section className='container text-center my-5'>
                 <h4 className="fs">Explore Our Collections</h4>
                 <p>find your favourites</p>
                 <div className='d-flex justify-content-around flex-wrap mt-4'>
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {firstThreeProducts.map((product, id) => (
+                        <div key={product._id}>
+                            <ProductCard productData={product} />
+                        </div>
+                    ))}
                 </div>
                 <button className="shop-btn mt-3"><a href="/shop">SHOP ALL PRODUCTS</a></button>
             </section>
