@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        navigate(`/search?q=${searchQuery}`);
+    };
+
     return (
         <div>
             <nav id='header' className="navbar navbar-expand-lg">
@@ -25,8 +34,15 @@ const Header = () => {
                                 <a className="nav-link" href="/blog">Skincare Blog</a>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <form className="d-flex" onSubmit={handleSearchSubmit}>
+                            <input
+                                className="form-control me-2"
+                                type="search"
+                                placeholder="Search"
+                                aria-label="Search"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
                             <button className="btn" type="submit"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
                         <a className='nav-item mx-2' href='/profile'><ion-icon name="person-outline"></ion-icon></a>
