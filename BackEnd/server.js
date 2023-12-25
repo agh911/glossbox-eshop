@@ -16,6 +16,7 @@ import { getProductDataRoute } from "./routes/getProductData.route.js";
 import { getUserDataRoute } from "./routes/getUserData.route.js";
 import { signInRoute } from "./routes/signIn.route.js";
 import { signUpRoute } from "./routes/signUp.route.js";
+import { addToBasketRoute } from "./routes/basket.route.js"
 
 const databaseConnect = async () => {
     console.log("connecting to mongo...");
@@ -32,6 +33,7 @@ app.use("/", getProductDataRoute);
 app.use("/", getUserDataRoute);
 app.use("/auth/signIn", signInRoute);
 app.use("/auth/signUp", signUpRoute);
+app.use("/api/basket", addToBasketRoute);
 
 const SERVER = app.listen(port, host, () => {
     console.log(`server running on https://${host}:${port}`);
