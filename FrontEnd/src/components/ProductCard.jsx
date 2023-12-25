@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Card.css';
 
-const ProductCard = ({ productData, addToBasket }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
+const ProductCard = ({ productData }) => {
     const navigate = useNavigate();
 
     const handleClick = (id) => {
@@ -18,17 +16,11 @@ const ProductCard = ({ productData, addToBasket }) => {
                 <img src={productData.imageUrl} alt="" />
             </div>
             <div className="d-flex flex-column">
+                <p className='mb-0'>{productData.brand}</p>
                 <div className="product-name-and-price d-flex justify-content-between mx-1 mt-2">
                     <p className="p-name me-1">{productData.name}</p>
                     <p className="p-price">£{productData.price}</p>
                 </div>
-                <button className="flex-grow"
-                    onClick={() => addToBasket(productData)}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                >
-                    Add to bag <ion-icon name={isHovered ? 'bag' : 'bag-outline'} />
-                </button>
             </div>
         </div >
     );
