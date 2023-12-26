@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { SignInForm } from "../components/authentication/SignInForm.jsx";
 import "./SigningPages.css";
 
-export const SignIn = () => {
+export const SignIn = ({ handleSignIn }) => {
 
     return (
         <div className="container-fluid">
@@ -12,7 +12,7 @@ export const SignIn = () => {
                 <div className="col d-flex flex-column align-items-center justify-content-center my-5">
                     <h1>Welcome to GlossBox</h1>
                     <p>Your Beauty, Your Way</p>
-                    <SignInForm />
+                    <SignInForm handleSignIn={handleSignIn} />
                     <p>Don't have an account?</p>
                     <a href="/signUp">
                         <button className='sign-up-button'>

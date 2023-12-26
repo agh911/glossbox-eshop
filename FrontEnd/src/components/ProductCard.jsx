@@ -16,7 +16,7 @@ const ProductCard = ({ productData }) => {
                 <img src={productData.imageUrl} alt="" />
             </div>
             <div className="d-flex flex-column">
-                <p className='mb-0'>{productData.brand}</p>
+                <p className='text-start mb-0'>{productData.brand}</p>
                 <div className="product-name-and-price d-flex justify-content-between mx-1 mt-2">
                     <p className="p-name me-1">{productData.name}</p>
                     <p className="p-price">£{productData.price}</p>
