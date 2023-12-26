@@ -3,7 +3,7 @@ import { getUser } from '../controllers/getUser.controller.js';
 
 const router = express.Router();
 
-router.route(`/`)
+router.route(`/getUser`)
     .post(getUser);
 
 export { router as getUserDataRoute };
