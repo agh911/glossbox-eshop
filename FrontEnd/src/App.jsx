@@ -11,9 +11,43 @@ import Products from "./pages/Products.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SingleProduct from "./pages/SingleProduct";
 import Basket from "./pages/Basket.jsx";
+import axios from "axios";
+
+import { checkSignIn } from './components/authentication/authenticationHelpers.js';
 
 function App() {
+  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
+
+  const handleSignIn = async ({ email, password }) => {
+    const signedIn = await checkSignIn({ email, password });
+    if (signedIn) {
+      localStorage.setItem('email', email);
+      setEmail(email);
+    }
+  }
+
+  useEffect(() => {
+    if (email == null) {
+      return;
+    }
+    async function fetchUserData() {
+      const userQuery = {
+        'email': email
+      }
+      const user = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/getUser`, userQuery).then((res) => res.data);
+      setUser(user);
+      setSignedIn(true);
+    }
+    fetchUserData();
+  }, [email]);
+
+  const signedOut = () => {
+    localStorage.removeItem('email', email);
+    setSignedIn(false);
+  }
 
   useEffect(() => {
     fetchProductData();
@@ -33,8 +67,8 @@ function App() {
     <>
       <Header productData={productData} />
       <Routes>
-        <Route path="/" element={<Home productData={productData} />} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
+        <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />
         <Route path="/shop" element={<Products productData={productData} />} />

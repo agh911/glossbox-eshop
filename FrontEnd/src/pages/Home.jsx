@@ -2,7 +2,7 @@ import React from 'react';
 import "./Home.css";
 import ProductCard from '../components/ProductCard';
 
-const Home = ({ productData }) => {
+const Home = ({ productData, signedIn, user }) => {
     const firstThreeProducts = productData.length > 0 ? productData.slice(0, 3) : [];
 
     return (
@@ -26,6 +26,7 @@ const Home = ({ productData }) => {
                 </div>
             </div>
             <section className='container text-center my-5'>
+                {signedIn && <p>{user._id}</p>}
                 <h4 className="fs">Explore Our Collections</h4>
                 <p>find your favourites</p>
                 <div className='d-flex justify-content-around flex-wrap mt-4'>

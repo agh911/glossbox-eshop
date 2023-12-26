@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../SignInForm.css';
 
 import { checkSignIn } from './authenticationHelpers.js';
-import { signInService } from '../../../utils/dataService.js'
 
-export const SignInForm = () => {
+export const SignInForm = ({ handleSignIn }) => {
     const [signIn, setSignIn] = useState({
         email: '',
         password: ''
@@ -26,7 +25,7 @@ export const SignInForm = () => {
         try {
             const signInStatus = await checkSignIn(signIn);
             if (signInStatus) {
-                await signInService(signIn);
+                await handleSignIn(signIn);
                 navigate('/');
             }
         } catch (error) {
