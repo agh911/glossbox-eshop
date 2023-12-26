@@ -30,6 +30,13 @@ function App() {
   }
 
   useEffect(() => {
+    const storedEmail = localStorage.getItem('email');
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
+
+  useEffect(() => {
     if (email == null) {
       return;
     }
@@ -45,7 +52,7 @@ function App() {
   }, [email]);
 
   const signedOut = () => {
-    localStorage.removeItem('email', email);
+    localStorage.removeItem('email');
     setSignedIn(false);
   }
 
