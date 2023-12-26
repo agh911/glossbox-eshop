@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SingleProductPage.css';
 
-const SingleProduct = ({ productData }) => {
+const SingleProduct = ({ productData, user }) => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const SingleProduct = ({ productData }) => {
 
         try {
             // Assume you have the user ID stored in the state (user._id)
-            const userId = 'USER_ID_HERE'; // Replace with actual user ID
+            const userId = user.Id; // Replace with actual user ID
 
             // Make a request to your backend to add the product to the user's basket
             const response = await axios.post(addToBagEndpoint, { userId, productId: product._id, quantity: selectedQuantity });

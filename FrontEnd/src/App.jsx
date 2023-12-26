@@ -79,7 +79,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />
         <Route path="/shop" element={<Products productData={productData} />} />
-        <Route path="/product/:id" element={<SingleProduct productData={productData} />} />
+        <Route path="/product/:id" element={<SingleProduct productData={productData} user={user} />} />
         <Route path="/basket" element={<Basket />} />
       </Routes>
       <Footer />
