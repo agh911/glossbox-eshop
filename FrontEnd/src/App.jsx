@@ -7,6 +7,7 @@ import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
 import { SignIn } from "./pages/SignIn.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
+import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SingleProduct from "./pages/SingleProduct";
@@ -72,9 +73,10 @@ function App() {
 
   return (
     <>
-      <Header productData={productData} />
+      <Header productData={productData} signedIn={signedIn} />
       <Routes>
         <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
+        <Route path="/profile" element={<Profile signedIn={signedIn} user={user} />} />
         <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />
