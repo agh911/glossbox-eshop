@@ -47,12 +47,13 @@ function App() {
       }
       const user = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/getUser`, userQuery).then((res) => res.data);
       setUser(user);
+      // console.log(user.basket.items[0].product)
       setSignedIn(true);
     }
     fetchUserData();
   }, [email]);
 
-  const signedOut = () => {
+  const handleSignOut = () => {
     localStorage.removeItem('email');
     setSignedIn(false);
   }
@@ -76,13 +77,13 @@ function App() {
       <Header productData={productData} signedIn={signedIn} />
       <Routes>
         <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
-        <Route path="/profile" element={<Profile signedIn={signedIn} user={user} />} />
+        <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} />} />
         <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />
         <Route path="/shop" element={<Products productData={productData} />} />
         <Route path="/product/:id" element={<SingleProduct productData={productData} user={user} />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} />} />
       </Routes>
       <Footer />
     </>
