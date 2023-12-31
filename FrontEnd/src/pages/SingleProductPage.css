@@ -9,3 +9,13 @@
     height: 100%;
     object-fit: cover;
 }
+
+.quantity-input {
+    width: 130px;
+    /* width: 70px; */
+}
+
+.input-group>button {
+    border-radius: 11px;
+    padding: 0.85em;
+}
