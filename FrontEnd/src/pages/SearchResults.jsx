@@ -21,7 +21,7 @@ const SearchResults = ({ productData }) => {
             <h2 className="pt-2">Search Results for "{searchQuery}"</h2>
             <div className="row">
                 {searchResults.map((product) => (
-                    <div key={product._id} className="col-md-4">
+                    <div key={product._id} className="col-lg-3 col-md-6 col-sm-12">
                         <ProductCard productData={product} />
                     </div>
                 ))}
