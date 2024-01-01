@@ -1,8 +1,10 @@
 import express from 'express';
-import { addToBasketController } from '../controllers/basket.controller.js';
+import { addToBasketController, completePurchaseController } from '../controllers/basket.controller.js';
 
-const router = express.Router();
+const addToBasketRoute = express.Router();
+addToBasketRoute.post('/', addToBasketController);
 
-router.post('/', addToBasketController);
+const completePurchaseRoute = express.Router();
+completePurchaseRoute.post('/completePurchase', completePurchaseController);
 
-export { router as addToBasketRoute };
+export { addToBasketRoute, completePurchaseRoute };
