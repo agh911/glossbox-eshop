@@ -14,8 +14,7 @@ const host = process.env.HOST;
 //*Importing routes
 import { getProductDataRoute } from "./routes/getProductData.route.js";
 import { getUserDataRoute } from "./routes/getUserData.route.js";
-import { signInRoute } from "./routes/signIn.route.js";
-import { signUpRoute } from "./routes/signUp.route.js";
+import { signInRoute, signUpRoute } from "./routes/auth.route.js";
 import { addToBasketRoute } from "./routes/basket.route.js"
 
 const databaseConnect = async () => {
