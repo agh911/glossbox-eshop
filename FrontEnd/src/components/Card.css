@@ -32,3 +32,18 @@
     border-radius: 11px;
     overflow: hidden;
 }
+
+.checkout-button {
+    width: 100%;
+    font-weight: 500;
+    background-color: #202020;
+    color: #fffffe;
+    border: none;
+    padding: .85em 4em;
+    border-radius: 11px;
+    transition: .5s ease-in-out;
+}
+
+.checkout-button:hover {
+    background-color: #9fa8d8;
+}

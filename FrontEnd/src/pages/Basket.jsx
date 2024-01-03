@@ -7,6 +7,10 @@ const Basket = ({ signedIn, user, productData }) => {
         return productData.find((product) => product._id === productId);
     };
 
+    const numberOfItems = user && user.basket && user.basket.items
+        ? user.basket.items.reduce((total, item) => total + (item.quantity ? item.quantity : 0), 0)
+        : 0;
+
     const calculateTotal = () => {
         return user.basket.items.reduce((total, basketItem) => {
             const product = findProductData(basketItem.product);
@@ -14,6 +18,9 @@ const Basket = ({ signedIn, user, productData }) => {
             return total + itemTotal;
         }, 0);
     };
+
+    const total = user && user.basket ? calculateTotal() : 0;
+
     return (
         <div className="container pt-5">
             <h1 className="fs pt-2">Your Basket</h1>
@@ -46,7 +53,7 @@ const Basket = ({ signedIn, user, productData }) => {
                     )}
                 </div>
                 <div className="col-lg-3 ms-4">
-                    <OrderSummary total={calculateTotal} />
+                    <OrderSummary numberOfItems={numberOfItems} total={total} />
                 </div>
             </div>
         </div>
