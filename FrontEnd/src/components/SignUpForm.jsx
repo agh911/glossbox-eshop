@@ -27,8 +27,12 @@ export const SignUpForm = () => {
     const signUpSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            await signUpService(signUp);
-            navigate('/signIn')
+            const response = await signUpService(signUp);
+            if (response && response.message === 'Sign up successful.') {
+                navigate('/signIn');
+            } else {
+                console.error("Sign-Up failed:", response.message);
+            }
         } catch (error) {
             console.error("Sign-Up failed:", error);
         }

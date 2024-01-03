@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { getData } from "../utils/dataHandlers.js";
 import Header from "./components/Header.jsx";
@@ -22,10 +23,11 @@ function App() {
   const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
 
+  const navigate = useNavigate();
+
   const handleSignIn = async ({ email, password }) => {
     const signedIn = await checkSignIn({ email, password });
     if (signedIn) {
-      localStorage.setItem('email', email);
       setEmail(email);
     }
   }
@@ -55,7 +57,9 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('email');
+    localStorage.removeItem('token');
     setSignedIn(false);
+    navigate('/');
   }
 
   useEffect(() => {

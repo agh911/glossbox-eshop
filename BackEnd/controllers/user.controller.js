@@ -8,7 +8,7 @@ export const signInController = async (req, res) => {
     }
     try {
         const response = await signInService(req.body);
-        res.status(201).json(response);
+        res.status(200).json(response);
     } catch (error) {
         console.log(error);
         res.status(400).send('Sign In failed');
@@ -23,7 +23,7 @@ export const signUpController = async (req, res) => {
     }
     try {
         const response = await signUpService(req.body);
-        res.status(201).json(response);
+        res.status(200).json(response);
     } catch (error) {
         console.log(error);
         res.status(400).send('Sign Up failed');

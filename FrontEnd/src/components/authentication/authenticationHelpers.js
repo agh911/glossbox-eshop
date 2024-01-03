@@ -1,9 +1,21 @@
 import axios from "axios";
 
 export const checkSignIn = async ({ email, password }) => {
-    const signInReturn = await axios.post(`http://localhost:3000/auth/signIn`, { email, password });
+    try {
+        const signInReturn = await axios.post(`http://localhost:3000/auth/signIn`, { email, password });
+        console.log("SignIn Response:", signInReturn);
 
-    const signInStatus = signInReturn.status === 200;
+        const { user, token } = signInReturn.data;
 
-    return signInStatus;
+        if (signInReturn.status === 200 && user && token) {
+            localStorage.setItem("email", user.email);
+            localStorage.setItem("token", token);
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        console.error("Error during sign-in:", error);
+        return false;
+    }
 }
