@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUpForm.css';
 
 import { signUpService } from '../../utils/dataService';
@@ -13,6 +14,8 @@ export const SignUpForm = () => {
         password: ''
     });
 
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setSignUp((signUp) => ({
@@ -25,6 +28,7 @@ export const SignUpForm = () => {
         e.preventDefault();
         try {
             await signUpService(signUp);
+            navigate('/signIn')
         } catch (error) {
             console.error("Sign-Up failed:", error);
         }
