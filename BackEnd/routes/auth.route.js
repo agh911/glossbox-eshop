@@ -1,59 +1,30 @@
 import express from 'express';
-import User from '../models/user.model.js';
+import { signInController, signUpController } from '../controllers/user.controller.js';
+import { validateUser } from '../middlewares/glossbox.validation.js';
+import jwt from 'jsonwebtoken';
 
 const signInRouter = express.Router();
 signInRouter.route('/')
-    .post(async (req, res) => {
-        const { email, password } = req.body;
-
-        try {
-            const user = await User.findOne({ email });
-
-            if (!user) {
-                return res.status(401).json({ message: 'Invalid credentials.' });
-            }
-
-            if (user && user.password === password) {
-                res.send({ message: 'Successful signed in', user });
-            } else {
-                res.status(401).send({ message: 'Invalid credentials' });
-            }
-
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Internal server error.' });
-        }
-    });
+    .post(signInController);
 
 export { signInRouter as signInRoute };
 
 
 const signUpRouter = express.Router();
 signUpRouter.route('/')
-    .post(async (req, res) => {
-        const { email, name, username, password } = req.body;
-
-        try {
-            const existingUser = await User.findOne({ email });
-
-            if (existingUser) {
-                return res.status(400).json({ message: 'Email is already in use.' });
-            }
-
-            const newUser = new User({
-                name,
-                username,
-                email,
-                password,
-            });
-
-            await newUser.save();
-
-            res.status(201).json({ message: 'Sign up successful.' });
-        } catch (error) {
-            console.error("Error during signup:", error);
-            res.status(500).json({ message: 'Internal server error.', error: error.message });
-        }
-    });
+    .post(signUpController);
 
 export { signUpRouter as signUpRoute };
+
+const secretKey = process.env.SECRET_KEY;
+export const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (token) {
+        jwt.verify(token, secretKey, (err) => {
+            if (err) return res.sendStatus(403);
+            next();
+        })
+    } else {
+        res.sendStatus(401);
+    }
+}
