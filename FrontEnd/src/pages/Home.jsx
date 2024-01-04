@@ -26,7 +26,6 @@ const Home = ({ productData, signedIn, user }) => {
                 </div>
             </div>
             <section className='container text-center my-5'>
-                {/* {signedIn && <p>{user._id}</p>} */}
                 <h4 className="fs">Explore Our Collections</h4>
                 <p>find your favourites</p>
                 <div className='d-flex justify-content-around flex-wrap mt-4'>
