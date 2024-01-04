@@ -1,8 +1,37 @@
 import React from 'react';
+import { useStripe, useElements } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import './Card.css';
 
-const OrderSummary = ({ numberOfItems, total }) => {
+// `${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`
 
+const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
+    const stripe = useStripe();
+    const elements = useElements();
+
+    const handleCheckout = async () => {
+        const items = user.basket.items.map(basketItem => {
+            const product = findProductData(basketItem.product);
+            return {
+                quantity: basketItem.quantity,
+                name: product.name,
+                price: product.price,
+                image: product.imageUrl,
+
+            }
+        });
+
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`, {
+                items,
+            });
+
+            const data = response.data;
+            window.location = data.url;
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
     return (
         <>
             <div className="container row">
@@ -25,7 +54,7 @@ const OrderSummary = ({ numberOfItems, total }) => {
                 <p>£{total}</p>
             </div>
 
-            <button className='checkout-button mb-5'>Check Out</button>
+            <button className='checkout-button mb-5' onClick={handleCheckout}>Check Out</button>
         </>
     );
 }

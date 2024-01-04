@@ -13,6 +13,8 @@ import Products from "./pages/Products.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SingleProduct from "./pages/SingleProduct";
 import Basket from "./pages/Basket.jsx";
+import Success from "./pages/Success.jsx";
+import Cancel from "./pages/Cancel.jsx";
 import axios from "axios";
 
 import { checkSignIn } from './components/authentication/authenticationHelpers.js';
@@ -88,6 +90,8 @@ function App() {
         <Route path="/shop" element={<Products productData={productData} />} />
         <Route path="/product/:id" element={<SingleProduct productData={productData} user={user} />} />
         <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/canceled" element={<Cancel />} />
       </Routes>
       <Footer />
     </>
