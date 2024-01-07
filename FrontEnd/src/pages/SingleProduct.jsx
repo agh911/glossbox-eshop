@@ -76,6 +76,20 @@ const SingleProduct = ({ productData, user }) => {
                         <div className="collapse mb-3" id="collapseExample">
                             <div>{product.description}</div>
                         </div>
+                        {/* <div class="accordion my-4">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                        Description
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        {product.description}
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
                         <div className="d-flex justify-content-between align-items-end">
                             <h4>£{product.price}</h4>
                             <div className="d-flex">

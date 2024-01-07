@@ -11,6 +11,15 @@ export const getProductData = async () => {
     }
 };
 
+export const getUserData = async (userQuery) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/getUser`, userQuery);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+
 export const signInService = async (credentials) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/signIn`, credentials);

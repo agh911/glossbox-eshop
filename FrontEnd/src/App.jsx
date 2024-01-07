@@ -18,6 +18,7 @@ import Cancel from "./pages/Cancel.jsx";
 import axios from "axios";
 
 import { checkSignIn } from './components/authentication/authenticationHelpers.js';
+import { getUserData } from "../utils/dataService.js";
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -49,9 +50,8 @@ function App() {
       const userQuery = {
         'email': email
       }
-      const user = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/getUser`, userQuery).then((res) => res.data);
+      const user = await getUserData(userQuery);
       setUser(user);
-      // console.log(user.basket.items[0].product)
       setSignedIn(true);
     }
     fetchUserData();
