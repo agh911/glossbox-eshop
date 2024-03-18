@@ -11,7 +11,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="footer pt-5 pb-2">
+        <footer className="footer mt-4 pt-5 pb-2">
             <div className="container">
                 <h2 className="fs mb-5">glossbox</h2>
                 <div className="footer-content d-flex justify-content-between flex-wrap">

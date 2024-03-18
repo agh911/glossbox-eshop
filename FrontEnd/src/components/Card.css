@@ -47,3 +47,8 @@
 .checkout-button:hover {
     background-color: #9fa8d8;
 }
+
+.review-card {
+    background-color: #eff0f3;
+    border-radius: 11px;
+}
