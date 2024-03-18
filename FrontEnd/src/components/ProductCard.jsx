@@ -17,9 +17,9 @@ const ProductCard = ({ productData }) => {
             </div>
             <div className="d-flex flex-column">
                 <p className='text-start mb-0'>{productData.brand}</p>
-                <div className="product-name-and-price d-flex justify-content-between mx-1 mt-2">
+                <div className="product-name-and-price d-flex justify-content-between me-2 mt-2">
                     <p className="p-name me-1">{productData.name}</p>
-                    <p className="p-price">£{productData.price}</p>
+                    <p className="p-price">£{productData.price.toFixed(2)}</p>
                 </div>
             </div>
         </div >

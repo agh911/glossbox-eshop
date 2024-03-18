@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ReviewCard from '../components/ReviewCard';
 import './SingleProductPage.css';
 
 const SingleProduct = ({ productData, user }) => {
@@ -9,6 +10,8 @@ const SingleProduct = ({ productData, user }) => {
 
     const product = productData.find((product) => product._id === id);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
+    const [sortBy, setSortBy] = useState('');
+    const [buttonText, setButtonText] = useState('Sort by');
 
     useEffect(() => {
         if (!product) {
@@ -47,24 +50,29 @@ const SingleProduct = ({ productData, user }) => {
         }
     };
 
+    const sortReviews = (criteria, text) => {
+        setSortBy(criteria);
+        setButtonText(text);
+    };
+
     return (
         <div className="container pt-5">
-            <div className="row justify-content-evenly mt-4 mb-5">
-                <div className="col-md-6 order-md-1 order-1">
+            <div className="row mt-3 mb-5">
+                <div className="col-12 col-md-7 order-md-1 order-1 pe-md-3">
                     <div className="product-image-container">
                         <img src={product.imageUrl} alt={product.name} className="img-fluid product-image" />
                     </div>
                 </div>
-                <div className="col-md-6 order-md-2 order-2">
+                <div className="col-12 col-md-5 order-md-2 order-2 ps-md-3">
                     <div className="product-info">
                         <h6 className="mb-0">{product.brand}</h6>
                         <h5>{product.name}</h5>
                         <a
                             data-bs-toggle="collapse"
-                            href="#collapseExample"
+                            href="#productDescription"
                             role="button"
                             aria-expanded="false"
-                            aria-controls="collapseExample"
+                            aria-controls="productDescription"
                             className="text-decoration-none"
                         >
                             <div className="flex-grow d-flex justify-content-between align-items-center">
@@ -73,26 +81,30 @@ const SingleProduct = ({ productData, user }) => {
                             </div>
                             <hr className="mt-0 mb-3" />
                         </a>
-                        <div className="collapse mb-3" id="collapseExample">
+                        <div className="collapse show mb-3" id="productDescription">
                             <div>{product.description}</div>
                         </div>
-                        {/* <div class="accordion my-4">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                        Description
-                                    </button>
-                                </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                                    <div class="accordion-body">
-                                        {product.description}
-                                    </div>
-                                </div>
+                        <a
+                            data-bs-toggle="collapse"
+                            href="#productIngredients"
+                            role="button"
+                            aria-expanded="false"
+                            aria-controls="productIngredients"
+                            className="text-decoration-none"
+                        >
+                            <div className="flex-grow d-flex justify-content-between align-items-center">
+                                <span className="my-2">Ingredients</span>
+                                <ion-icon name="add-outline"></ion-icon>
                             </div>
-                        </div> */}
-                        <div className="d-flex justify-content-between align-items-end">
-                            <h4>£{product.price}</h4>
-                            <div className="d-flex">
+                            <hr className="mt-0 mb-3" />
+                        </a>
+                        <div className="collapse mb-3" id="productIngredients">
+                            <div>Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</div>
+                        </div>
+
+                        <div className="d-flex justify-content-between align-items-end flex-wrap mt-4">
+                            <h4>£{product.price.toFixed(2)}</h4>
+                            <div className="d-flex flex-wrap">
                                 <div className="quantity-input me-2">
                                     <div className="input-group">
                                         <button className="btn btn-outline-secondary" onClick={handleDecrement}>
@@ -118,6 +130,37 @@ const SingleProduct = ({ productData, user }) => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="row">
+                <div className="d-flex">
+                    <h3 className='me-4'>Reviews</h3>
+                    <div className="dropdown">
+                        <button className="btn btn-sm btn-outline-dark dropdown-toggle" type="button" id="sortDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            {buttonText}
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="sortDropdownButton">
+                            <li><button className="dropdown-item" onClick={() => sortReviews('desc', 'Highest to Lowest Rating')}>Highest to Lowest Rating</button></li>
+                            <li><button className="dropdown-item" onClick={() => sortReviews('asc', 'Lowest to Highest Rating')}>Lowest to Highest Rating</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                {product &&
+                    product.reviews &&
+                    product.reviews
+                        .slice()
+                        .sort((a, b) => {
+                            if (sortBy === 'asc') {
+                                return a.rating - b.rating;
+                            } else if (sortBy === 'desc') {
+                                return b.rating - a.rating;
+                            } else {
+                                return 0;
+                            }
+                        })
+                        .map((review, index) => (
+                            <ReviewCard key={index} reviewData={review} />
+                        ))}
             </div>
         </div>
     );
