@@ -16,10 +16,10 @@ const ProductCard = ({ productData }) => {
                 <img src={productData.imageUrl} alt="" />
             </div>
             <div className="d-flex flex-column">
-                <p className='text-start mb-0'>{productData.brand}</p>
-                <div className="product-name-and-price d-flex justify-content-between me-2 mt-2">
-                    <p className="p-name me-1">{productData.name}</p>
-                    <p className="p-price">£{productData.price.toFixed(2)}</p>
+                <p className='prim-font text-start mt-1 mb-0'>{productData.brand}</p>
+                <div className="product-name-and-price d-flex justify-content-between me-2 mt-1">
+                    <p className="sec-font p-name me-1">{productData.name}</p>
+                    <p className="sec-font p-price">£{productData.price.toFixed(2)}</p>
                 </div>
             </div>
         </div >

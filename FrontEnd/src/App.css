@@ -1,5 +1,6 @@
 .fs {
   font-family: 'Quinsi', sans-serif;
+  -webkit-font-smoothing: auto;
 }
 
 .prim-font {

@@ -1,11 +1,11 @@
 .product-card {
     max-width: 304px;
-    max-height: 395px;
+    max-height: 445px;
 }
 
 .product-card-img {
     width: 303.33px;
-    height: 303.33px;
+    height: 353.33px;
     border-radius: 11px;
     overflow: hidden;
 }
@@ -50,5 +50,5 @@
 
 .review-card {
     background-color: #eff0f3;
-    border-radius: 11px;
+    border-radius: 5px;
 }
