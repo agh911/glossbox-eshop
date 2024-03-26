@@ -65,8 +65,8 @@ const SingleProduct = ({ productData, user }) => {
                 </div>
                 <div className="col-12 col-md-5 order-md-2 order-2 ps-md-3">
                     <div className="product-info">
-                        <h6 className="mb-0">{product.brand}</h6>
-                        <h5>{product.name}</h5>
+                        <h5 className="prim-font">{product.brand}</h5>
+                        <h6 className="sec-font">{product.name}</h6>
                         <a
                             data-bs-toggle="collapse"
                             href="#productDescription"
@@ -76,13 +76,13 @@ const SingleProduct = ({ productData, user }) => {
                             className="text-decoration-none"
                         >
                             <div className="flex-grow d-flex justify-content-between align-items-center">
-                                <span className="my-2">Description</span>
+                                <span className="prim-font my-2">Description</span>
                                 <ion-icon name="add-outline"></ion-icon>
                             </div>
                             <hr className="mt-0 mb-3" />
                         </a>
                         <div className="collapse show mb-3" id="productDescription">
-                            <div>{product.description}</div>
+                            <p className="sec-font">{product.description}</p>
                         </div>
                         <a
                             data-bs-toggle="collapse"
@@ -93,17 +93,17 @@ const SingleProduct = ({ productData, user }) => {
                             className="text-decoration-none"
                         >
                             <div className="flex-grow d-flex justify-content-between align-items-center">
-                                <span className="my-2">Ingredients</span>
+                                <span className="prim-font my-2">Ingredients</span>
                                 <ion-icon name="add-outline"></ion-icon>
                             </div>
                             <hr className="mt-0 mb-3" />
                         </a>
                         <div className="collapse mb-3" id="productIngredients">
-                            <div>Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</div>
+                            <p className="sec-font">Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</p>
                         </div>
 
                         <div className="d-flex justify-content-between align-items-end flex-wrap mt-4">
-                            <h4>£{product.price.toFixed(2)}</h4>
+                            <h4 className="sec-font">£{product.price.toFixed(2)}</h4>
                             <div className="d-flex flex-wrap">
                                 <div className="quantity-input me-2">
                                     <div className="input-group">

@@ -18,7 +18,7 @@ const Home = ({ productData, signedIn, user }) => {
                 </div>
                 <div className="hero-content">
                     <h1 className='fs mt-5'>Discover Beauty Simplified</h1>
-                    <p>We're dedicated to simplifying your skincare routine, bringing you a range of high-quality products to enhance your natural beauty.</p>
+                    <p className="sec-font">We're dedicated to simplifying your skincare routine, bringing you a range of high-quality products to enhance your natural beauty.</p>
                     <button className="shop-btn mt-3"><a href="/shop">SHOP NOW</a></button>
                 </div>
                 <div className="divider">
@@ -27,7 +27,7 @@ const Home = ({ productData, signedIn, user }) => {
             </div>
             <section className='container text-center my-5'>
                 <h4 className="fs">Explore Our Collections</h4>
-                <p>find your favourites</p>
+                <p className="sec-font">find your favourites</p>
                 <div className='d-flex justify-content-around flex-wrap mt-4'>
                     {firstThreeProducts.map((product, id) => (
                         <div key={product._id}>
@@ -41,14 +41,14 @@ const Home = ({ productData, signedIn, user }) => {
                 <div className="container d-flex justify-content-between align-items-center flex-wrap">
                     <div>
                         <h3 className="fs">Discover Your Perfect Skincare Routine</h3>
-                        <p>Not sure where to start? Take our personalised skincare quiz to find products tailored just for you.</p>
+                        <p className="sec-font">Not sure where to start? Take our personalised skincare quiz to find products tailored just for you.</p>
                     </div>
                     <button className="shop-btn"><a href="#">TAKE THE QUIZ</a></button>
                 </div>
             </section>
             <section className='container my-5'>
                 <h4 className="text-center fs">Skincare Insights from the Experts</h4>
-                <p className="text-center mb-5">At GlossBox, we're more than a store. We're your skincare partners, guiding you every step of the way. Join us in exploring the world of skincare, learning together, and sharing your beauty journey.</p>
+                <p className="sec-font text-center mb-5">At GlossBox, we're more than a store. We're your skincare partners, guiding you every step of the way. Join us in exploring the world of skincare, learning together, and sharing your beauty journey.</p>
                 <div className="d-flex justify-content-around flex-wrap">
                     <div className="expert-help">
                         <div className="expert-help-img">
@@ -56,7 +56,7 @@ const Home = ({ productData, signedIn, user }) => {
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Expert Advice</h4>
-                            <p>Our team of skincare specialists is dedicated to bringing you the latest trends, tips, and advice. Stay informed about the best practices for glowing, healthy skin.</p>
+                            <p className="sec-font">Our team of skincare specialists is dedicated to bringing you the latest trends, tips, and advice. Stay informed about the best practices for glowing, healthy skin.</p>
                         </div>
                     </div>
                     <div className="expert-help">
@@ -65,7 +65,7 @@ const Home = ({ productData, signedIn, user }) => {
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Product Reviews</h4>
-                            <p>Read and contribute to our product reviews. Hear from customers like you who have experienced the benefits of our products firsthand.</p>
+                            <p className="sec-font">Read and contribute to our product reviews. Hear from customers like you who have experienced the benefits of our products firsthand.</p>
                         </div>
                     </div>
                     <div className="expert-help">
@@ -74,7 +74,7 @@ const Home = ({ productData, signedIn, user }) => {
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Skin Care Blog</h4>
-                            <p>Dive into our informative blog, where we share in-depth articles on skincare routines, ingredient breakdowns, and more.</p>
+                            <p className="sec-font">Dive into our informative blog, where we share in-depth articles on skincare routines, ingredient breakdowns, and more.</p>
                         </div>
                     </div>
                     <div className="expert-help">
@@ -83,7 +83,7 @@ const Home = ({ productData, signedIn, user }) => {
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Customer Stories</h4>
-                            <p>We love hearing about your GlossBox experiences. Share your journey with us and inspire others on their path to beauty.</p>
+                            <p className="sec-font">We love hearing about your GlossBox experiences. Share your journey with us and inspire others on their path to beauty.</p>
                         </div>
                     </div>
                 </div>
