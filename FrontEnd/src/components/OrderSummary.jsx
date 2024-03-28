@@ -7,10 +7,13 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
     const stripe = useStripe();
     const elements = useElements();
 
+    const orderTotal = parseFloat(total).toFixed(2);
+
     const handleCheckout = async () => {
         const items = user.basket.items.map(basketItem => {
             const product = findProductData(basketItem.product);
             return {
+                productId: basketItem.product,
                 quantity: basketItem.quantity,
                 name: product.name,
                 price: product.price,
@@ -22,6 +25,7 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`, {
                 userId: user._id,
+                total: orderTotal,
                 items,
             });
 
@@ -43,10 +47,6 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
                 <p>Items to order</p>
                 <p>{numberOfItems}</p>
             </div>
-            {/* <div className="d-flex justify-content-between">
-                <p>Delivery</p>
-                <p>£</p>
-            </div> */}
             <hr />
             <div className="d-flex justify-content-between">
                 <p>Total</p>
