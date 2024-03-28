@@ -3,8 +3,6 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './Card.css';
 
-// `${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`
-
 const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -23,6 +21,7 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
 
         try {
             const response = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`, {
+                userId: user._id,
                 items,
             });
 
