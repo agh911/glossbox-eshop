@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
-const Header = ({ signedIn }) => {
+const Header = ({ signedIn, numberOfItems }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
@@ -48,11 +48,16 @@ const Header = ({ signedIn }) => {
                             <button className="btn" type="submit"><ion-icon name="search-outline"></ion-icon></button>
                         </form>
                         <a className='nav-item mx-2' href={profileLink}><ion-icon name="person-outline"></ion-icon></a>
-                        <a className='nav-item mx-2' href='/basket'><ion-icon name="bag-outline"></ion-icon></a>
+                        <a className='nav-item mx-2' href='/basket'>
+                            <div className="position-relative">
+                                <ion-icon name="bag-outline"></ion-icon>
+                                {numberOfItems > 0 && <span className="badge bg-dark position-absolute top-0 start-100 translate-middle">{numberOfItems}</span>}
+                            </div>
+                        </a>
                     </div>
-                </div>
-            </nav>
-        </div>
+                </div >
+            </nav >
+        </div >
     );
 }
 

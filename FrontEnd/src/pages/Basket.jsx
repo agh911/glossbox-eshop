@@ -1,8 +1,9 @@
 import React from 'react';
 import BasketItemCard from '../components/BasketItemCard';
 import OrderSummary from '../components/OrderSummary';
+import axios from 'axios';
 
-const Basket = ({ signedIn, user, productData }) => {
+const Basket = ({ signedIn, user, productData, setProductData }) => {
     const findProductData = (productId) => {
         return productData.find((product) => product._id === productId);
     };
@@ -19,12 +20,39 @@ const Basket = ({ signedIn, user, productData }) => {
         }, 0);
     };
 
-    const total = user && user.basket ? calculateTotal() : 0;
+    const total = user && user.basket ? calculateTotal().toFixed(2) : 0;
+
+    const removeItem = async (productId) => {
+        try {
+            await axios.delete(`${import.meta.env.VITE_GLOSSBOXURL}/api/basket/${user._id}/${productId}`);
+            const updatedProductData = productData.filter(product => product._id !== productId);
+            setProductData(updatedProductData);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const updateQuantity = async (productId, newQuantity) => {
+        try {
+            const updatedBasket = user.basket.items.map(item => {
+                if (item.product === productId) {
+                    return { ...item, quantity: newQuantity };
+                }
+                return item;
+            });
+            await axios.put(`${import.meta.env.VITE_GLOSSBOXURL}/api/basket/${user._id}/${productId}`, {
+                items: updatedBasket
+            });
+            setProductData(updatedBasket);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     return (
-        <div className="container pt-5">
+        <div className="container pt-5 mb-5">
             <h1 className="fs pt-2">Your Basket</h1>
-            <div className="row d-flex justify-content-between">
+            <div className="container row d-flex justify-content-between">
                 <div className="col-lg-8">
                     <div className="container row">
                         <div className="col-lg-8">
@@ -45,14 +73,18 @@ const Basket = ({ signedIn, user, productData }) => {
                                 return (
                                     <BasketItemCard
                                         key={basketItem._id}
+                                        user={user}
                                         product={product}
-                                        quantity={basketItem.quantity} />
+                                        quantity={basketItem.quantity}
+                                        updateQuantity={updateQuantity}
+                                        removeItem={removeItem}
+                                    />
                                 );
                             })}
                         </div>
                     )}
                 </div>
-                <div className="col-lg-3 ms-4">
+                <div className="col-lg-3 ms-4 mb-3">
                     <OrderSummary user={user} numberOfItems={numberOfItems} total={total} findProductData={findProductData} />
                 </div>
             </div>
