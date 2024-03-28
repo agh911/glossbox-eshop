@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import AddToBagModal from '../components/AddToBagModal';
 import ReviewCard from '../components/ReviewCard';
 import './SingleProductPage.css';
 
@@ -12,6 +13,8 @@ const SingleProduct = ({ productData, user }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [sortBy, setSortBy] = useState('');
     const [buttonText, setButtonText] = useState('Sort by');
+    const [showModal, setShowModal] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         if (!product) {
@@ -41,10 +44,16 @@ const SingleProduct = ({ productData, user }) => {
             const response = await axios.post(addToBagEndpoint, { userId, productId: product._id, quantity: selectedQuantity });
 
             if (response.data.success) {
-                alert('Product added to bag successfully!');
+                setIsSuccess(true);
             } else {
-                alert(`Failed to add product to bag: ${response.data.error}`);
+                setIsSuccess(false);
             }
+
+            setShowModal(true);
+
+            setTimeout(() => {
+                setShowModal(false);
+            }, 3000);
         } catch (error) {
             console.error('Error adding product to bag:', error.message);
         }
@@ -53,6 +62,10 @@ const SingleProduct = ({ productData, user }) => {
     const sortReviews = (criteria, text) => {
         setSortBy(criteria);
         setButtonText(text);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     return (
@@ -126,6 +139,7 @@ const SingleProduct = ({ productData, user }) => {
                                 <button className="btn btn-primary shop-btn" onClick={handleAddToBag}>
                                     Add to bag <ion-icon name="bag" />
                                 </button>
+                                <AddToBagModal showModal={showModal} closeModal={closeModal} isSuccess={isSuccess} />
                             </div>
                         </div>
                     </div>

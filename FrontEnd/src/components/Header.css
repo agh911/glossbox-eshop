@@ -23,3 +23,7 @@ nav {
     font-weight: bolder;
     font-size: 24px;
 }
+
+span.badge {
+    font-size: xx-small;
+}

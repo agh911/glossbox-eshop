@@ -37,3 +37,55 @@ export const addToBasket = async (userId, productId, quantity) => {
         throw error;
     }
 };
+
+export const updateBasketItemQuantity = async (userId, productId, quantity) => {
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            throw new Error('Product not found');
+        }
+
+        const existingItem = user.basket.items.find(
+            (item) => item.product.toString() === productId
+        );
+
+        if (!existingItem) {
+            throw new Error('Item not found in basket');
+        }
+
+        existingItem.quantity = quantity;
+
+        await user.save();
+
+        return user.basket;
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const removeFromBasket = async (userId, productId) => {
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        user.basket.items = user.basket.items.filter(
+            (item) => item.product.toString() !== productId
+        );
+
+        await user.save();
+
+        return user.basket;
+    } catch (error) {
+        throw error;
+    }
+};

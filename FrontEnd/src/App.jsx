@@ -25,6 +25,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
+  const [numberOfItems, setNumberOfItems] = useState(0);
 
   const navigate = useNavigate();
 
@@ -78,9 +79,18 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (user && user.basket && user.basket.items) {
+      const totalItems = user.basket.items.reduce((acc, item) => acc + item.quantity, 0);
+      setNumberOfItems(totalItems);
+    } else {
+      setNumberOfItems(0);
+    }
+  }, [user]);
+
   return (
     <>
-      <Header productData={productData} signedIn={signedIn} />
+      <Header productData={productData} signedIn={signedIn} numberOfItems={numberOfItems} />
       <Routes>
         <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
         <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} />} />
