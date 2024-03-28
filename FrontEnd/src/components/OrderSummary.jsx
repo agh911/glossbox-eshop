@@ -35,7 +35,7 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
     return (
         <>
             <div className="container row">
-                <div className="col-lg-12">
+                <div className="col-12">
                     <p className='mb-0'>Summary</p>
                 </div>
             </div>
