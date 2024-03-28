@@ -53,15 +53,15 @@ const Basket = ({ signedIn, user, productData, setProductData }) => {
         <div className="container pt-5 mb-5">
             <h1 className="fs pt-2">Your Basket</h1>
             <div className="container row d-flex justify-content-between">
-                <div className="col-lg-8">
+                <div className="col-8">
                     <div className="container row">
-                        <div className="col-lg-8">
+                        <div className="col-8">
                             <p className='m-0'>Product details</p>
                         </div>
-                        <div className="col-lg-2 text-center">
+                        <div className="col-2 text-center">
                             <p className='m-0'>Quantity</p>
                         </div>
-                        <div className="col-lg-2 text-end">
+                        <div className="col-2 text-end">
                             <p className='m-0'>Price</p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ const Basket = ({ signedIn, user, productData, setProductData }) => {
                         </div>
                     )}
                 </div>
-                <div className="col-lg-3 ms-4 mb-3">
+                <div className="col-3 mb-3">
                     <OrderSummary user={user} numberOfItems={numberOfItems} total={total} findProductData={findProductData} />
                 </div>
             </div>
