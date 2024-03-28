@@ -1,12 +1,12 @@
 import Stripe from 'stripe';
 import { config } from "dotenv";
+import { removeAllBasketItems } from '../services/basket.service.js';
 
 config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` });
 
 
 const stripeKey = process.env.STRIPE_SECRET_KEY;
 const stripeAPI = new Stripe(stripeKey);
-// import stripeAPI from "./stripe";
 
 export const createCheckoutSession = async (req, res) => {
     console.log('Received request body:', req.body.items);
@@ -33,6 +33,9 @@ export const createCheckoutSession = async (req, res) => {
             cancel_url: `${domainURL}/canceled`,
             shipping_address_collection: { allowed_countries: ['GB'] },
         });
+
+        await removeAllBasketItems(req.body.userId);
+
         res.json({ url: session.url });
     } catch (error) {
         console.error('An error occurred while creating the session:', error.message);
