@@ -72,7 +72,7 @@ function App() {
   const fetchProductData = async () => {
     try {
       const response = await getData();
-      console.log(response);
+      // console.log(response);
       setProductData(response);
     } catch (error) {
       return error;
@@ -93,7 +93,7 @@ function App() {
       <Header productData={productData} signedIn={signedIn} numberOfItems={numberOfItems} />
       <Routes>
         <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
-        <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} />} />
+        <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} productData={productData} />} />
         <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />

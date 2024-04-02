@@ -20,6 +20,7 @@ import { getUserDataRoute } from "./routes/getUserData.route.js";
 import { signInRoute, signUpRoute } from "./routes/auth.route.js";
 import { addToBasketRoute } from "./routes/basket.route.js"
 import { checkoutRoute } from "./routes/checkout.route.js";
+import { orderRouter } from "./routes/order.route.js";
 import { validateUser } from "./middlewares/glossbox.validation.js";
 
 const databaseConnect = async () => {
@@ -39,6 +40,7 @@ app.use("/auth/signIn", validateUser, signInRoute);
 app.use("/auth/signUp", validateUser, signUpRoute);
 app.use("/api/basket", addToBasketRoute);
 app.use("/create-checkout-session", checkoutRoute);
+app.use("/", orderRouter);
 
 const SERVER = app.listen(port, host, () => {
     console.log(`server running on https://${host}:${port}`);

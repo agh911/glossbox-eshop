@@ -19,10 +19,10 @@ const Home = ({ productData, signedIn, user }) => {
                 <div className="hero-content">
                     <h1 className='fs mt-5'>Discover Beauty Simplified</h1>
                     <p className="sec-font">We're dedicated to simplifying your skincare routine, bringing you a range of high-quality products to enhance your natural beauty.</p>
-                    <button className="shop-btn mt-3"><a href="/shop">SHOP NOW</a></button>
+                    <button className="shop-btn mt-3"><a href="/shop">Shop Now</a></button>
                 </div>
                 <div className="divider">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#ffffff" fillOpacity="1" d="M0,256L1440,160L1440,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 260"><path fill="#fefbf6" fillOpacity="1" d="M0,256L1440,160L1440,320L0,320Z"></path></svg>
                 </div>
             </div>
             <section className='container text-center my-5'>
@@ -35,7 +35,7 @@ const Home = ({ productData, signedIn, user }) => {
                         </div>
                     ))}
                 </div>
-                <button className="shop-btn mt-3"><a href="/shop">SHOP ALL PRODUCTS</a></button>
+                <button className="shop-btn mt-3"><a href="/shop">Shop All Products</a></button>
             </section>
             <section className="quiz container-fluid py-5 my-5">
                 <div className="container d-flex justify-content-between align-items-center flex-wrap">
@@ -43,7 +43,7 @@ const Home = ({ productData, signedIn, user }) => {
                         <h3 className="fs">Discover Your Perfect Skincare Routine</h3>
                         <p className="sec-font">Not sure where to start? Take our personalised skincare quiz to find products tailored just for you.</p>
                     </div>
-                    <button className="shop-btn"><a href="#">TAKE THE QUIZ</a></button>
+                    <button className="shop-btn"><a href="#">Take The Quiz</a></button>
                 </div>
             </section>
             <section className='container my-5'>
@@ -52,38 +52,38 @@ const Home = ({ productData, signedIn, user }) => {
                 <div className="d-flex justify-content-around flex-wrap">
                     <div className="expert-help">
                         <div className="expert-help-img">
-                            <img src="https://images.pexels.com/photos/5069430/pexels-photo-5069430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                            <img src="https://images.pexels.com/photos/14996839/pexels-photo-14996839/free-photo-of-woman-getting-a-face-massage.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Expert Advice</h4>
-                            <p className="sec-font">Our team of skincare specialists is dedicated to bringing you the latest trends, tips, and advice. Stay informed about the best practices for glowing, healthy skin.</p>
+                            <p className="sec-font-sm">Our team of skincare specialists is dedicated to bringing you the latest trends, tips, and advice. Stay informed about the best practices for glowing, healthy skin.</p>
                         </div>
                     </div>
                     <div className="expert-help">
                         <div className="expert-help-img">
-                            <img src="https://images.pexels.com/photos/6621462/pexels-photo-6621462.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                            <img src="https://images.pexels.com/photos/14920154/pexels-photo-14920154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Product Reviews</h4>
-                            <p className="sec-font">Read and contribute to our product reviews. Hear from customers like you who have experienced the benefits of our products firsthand.</p>
+                            <p className="sec-font-sm">Read and contribute to our product reviews. Hear from customers like you who have experienced the benefits of our products firsthand.</p>
                         </div>
                     </div>
                     <div className="expert-help">
                         <div className="expert-help-img">
-                            <img src="https://images.pexels.com/photos/8076232/pexels-photo-8076232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                            <img src="https://images.pexels.com/photos/7520462/pexels-photo-7520462.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Skin Care Blog</h4>
-                            <p className="sec-font">Dive into our informative blog, where we share in-depth articles on skincare routines, ingredient breakdowns, and more.</p>
+                            <p className="sec-font-sm">Dive into our informative blog, where we share in-depth articles on skincare routines, ingredient breakdowns, and more.</p>
                         </div>
                     </div>
                     <div className="expert-help">
                         <div className="expert-help-img">
-                            <img src="https://images.pexels.com/photos/5069468/pexels-photo-5069468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                            <img src="https://images.pexels.com/photos/4056458/pexels-photo-4056458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                         </div>
                         <div className="expert-help-desc mt-3">
                             <h4 className="fs">Customer Stories</h4>
-                            <p className="sec-font">We love hearing about your GlossBox experiences. Share your journey with us and inspire others on their path to beauty.</p>
+                            <p className="sec-font-sm">We love hearing about your GlossBox experiences. Share your journey with us and inspire others on their path to beauty.</p>
                         </div>
                     </div>
                 </div>

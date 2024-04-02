@@ -37,3 +37,12 @@ export const signUpService = async (userData) => {
         throw error;
     }
 };
+
+export const getUserOrderData = async (userId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/user/${userId}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};

@@ -1,12 +1,12 @@
 .product-card {
     max-width: 304px;
-    max-height: 445px;
+    max-height: 435px;
 }
 
 .product-card-img {
     width: 303.33px;
-    height: 353.33px;
-    border-radius: 11px;
+    height: 343.33px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
@@ -26,29 +26,48 @@
     font-weight: 500;
 }
 
-.basket-card-img {
+.basket-card-img,
+.order-item img {
     width: 75.33px;
     height: 75.33px;
-    border-radius: 11px;
+    border-radius: 3px;
     overflow: hidden;
+    object-fit: cover;
 }
 
 .checkout-button {
     width: 100%;
     font-weight: 500;
-    background-color: #202020;
+    background-color: #3e2b2e;
     color: #fffffe;
     border: none;
     padding: .85em 4em;
-    border-radius: 11px;
+    border-radius: 3px;
     transition: .5s ease-in-out;
 }
 
 .checkout-button:hover {
-    background-color: #9fa8d8;
+    background-color: #e4cebe;
+    color: #3e2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
 }
 
-.review-card {
-    background-color: #eff0f3;
-    border-radius: 5px;
+.review-card,
+.order-card {
+    background-color: #faf4ef;
+    border-radius: 3px;
+    border: .1px solid rgba(62, 43, 46, .2);
+}
+
+.prim-font {
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+}
+
+.prim-font-sm {
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 600;
+    text-transform: capitalize;
 }

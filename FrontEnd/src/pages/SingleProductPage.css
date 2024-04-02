@@ -1,9 +1,3 @@
-/* .product-image-container {
-    max-width: 400px;
-    height: 400px;
-    position: relative;
-} */
-
 .product-image {
     width: 100%;
     height: 100%;
@@ -15,9 +9,17 @@
     /* width: 70px; */
 }
 
-.input-group>button {
-    border-radius: 11px;
+.qty-btn {
+    border-radius: 3px;
     padding: 0.85em;
+    background-color: #3c2b2e;
+    color: #fffffe;
+}
+
+.qty-btn:hover {
+    background-color: #e4cebe;
+    color: #3c2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
 }
 
 .product-image-container {

@@ -51,7 +51,7 @@ const Basket = ({ signedIn, user, productData, setProductData }) => {
 
     return (
         <div className="container pt-5 mb-5">
-            <h1 className="fs pt-2">Your Basket</h1>
+            <h1 className="fs pt-4">Your Basket</h1>
             <div className="container row d-flex justify-content-between">
                 <div className="col-8">
                     <div className="container row">

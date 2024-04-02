@@ -76,7 +76,7 @@ const SingleProduct = ({ productData, user }) => {
                         <img src={product.imageUrl} alt={product.name} className="img-fluid product-image" />
                     </div>
                 </div>
-                <div className="col-12 col-md-5 order-md-2 order-2 ps-md-3">
+                <div className="col-12 col-md-5 order-md-2 order-2 d-flex flex-column justify-content-between ps-md-3">
                     <div className="product-info">
                         <h5 className="prim-font">{product.brand}</h5>
                         <h6 className="sec-font">{product.name}</h6>
@@ -89,13 +89,13 @@ const SingleProduct = ({ productData, user }) => {
                             className="text-decoration-none"
                         >
                             <div className="flex-grow d-flex justify-content-between align-items-center">
-                                <span className="prim-font my-2">Description</span>
+                                <span className="prim-font-sm my-2">Description</span>
                                 <ion-icon name="add-outline"></ion-icon>
                             </div>
                             <hr className="mt-0 mb-3" />
                         </a>
                         <div className="collapse show mb-3" id="productDescription">
-                            <p className="sec-font">{product.description}</p>
+                            <p className="sec-font-sm">{product.description}</p>
                         </div>
                         <a
                             data-bs-toggle="collapse"
@@ -106,21 +106,22 @@ const SingleProduct = ({ productData, user }) => {
                             className="text-decoration-none"
                         >
                             <div className="flex-grow d-flex justify-content-between align-items-center">
-                                <span className="prim-font my-2">Ingredients</span>
+                                <span className="prim-font-sm my-2">Ingredients</span>
                                 <ion-icon name="add-outline"></ion-icon>
                             </div>
                             <hr className="mt-0 mb-3" />
                         </a>
                         <div className="collapse mb-3" id="productIngredients">
-                            <p className="sec-font">Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</p>
+                            <p className="sec-font-sm">Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</p>
                         </div>
-
-                        <div className="d-flex justify-content-between align-items-end flex-wrap mt-4">
-                            <h4 className="sec-font">£{product.price.toFixed(2)}</h4>
+                    </div>
+                    <div>
+                        <div className="d-flex justify-content-between align-items-end flex-wrap mt-5 position-relative">
+                            <h4 className="thr-font">£{product.price.toFixed(2)}</h4>
                             <div className="d-flex flex-wrap">
                                 <div className="quantity-input me-2">
                                     <div className="input-group">
-                                        <button className="btn btn-outline-secondary" onClick={handleDecrement}>
+                                        <button className="btn qty-btn" onClick={handleDecrement}>
                                             -
                                         </button>
                                         <input
@@ -131,7 +132,7 @@ const SingleProduct = ({ productData, user }) => {
                                             className="form-control"
                                             min="1"
                                         />
-                                        <button className="btn btn-outline-secondary" onClick={handleIncrement}>
+                                        <button className="btn qty-btn" onClick={handleIncrement}>
                                             +
                                         </button>
                                     </div>
@@ -139,15 +140,15 @@ const SingleProduct = ({ productData, user }) => {
                                 <button className="btn btn-primary shop-btn" onClick={handleAddToBag}>
                                     Add to bag <ion-icon name="bag" />
                                 </button>
-                                <AddToBagModal showModal={showModal} closeModal={closeModal} isSuccess={isSuccess} />
                             </div>
+                            <AddToBagModal showModal={showModal} closeModal={closeModal} isSuccess={isSuccess} />
                         </div>
                     </div>
                 </div>
             </div>
             <div className="row">
                 <div className="d-flex">
-                    <h3 className='me-4'>Reviews</h3>
+                    <h3 className='fs me-4'>Reviews</h3>
                     <div className="dropdown">
                         <button className="btn btn-sm btn-outline-dark dropdown-toggle" type="button" id="sortDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                             {buttonText}

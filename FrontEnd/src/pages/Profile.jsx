@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-
-const MyPurchases = ({ user }) => (
-    <div>
-        <h2>My Purchases</h2>
-        <p>List of purchased items by {user.name}</p>
-    </div>
-);
+import MyPurchases from '../components/MyPurchases';
 
 const PersonalDetails = ({ user }) => (
     <div>
-        <h2>Personal Details</h2>
+        <h4>Personal Details</h4>
         <p>Email: {user.email}</p>
     </div>
 );
 
-const Profile = ({ signedIn, handleSignOut, user }) => {
-    console.log(user)
+const Profile = ({ signedIn, handleSignOut, user, productData }) => {
     const [selectedTab, setSelectedTab] = useState('MyPurchases');
 
     const handleTabChange = (tabName) => {
@@ -24,19 +17,19 @@ const Profile = ({ signedIn, handleSignOut, user }) => {
 
     return (
         <div className="container pt-5">
-            <div className="d-flex my-4">
+            <div className="my-4">
                 {signedIn && (
-                    <>
-                        <div className="d-flex flex-column">
-                            <h4>Hi {user.name}</h4>
+                    <div className="row d-flex justify-content-between">
+                        <div className="col-2">
+                            <h4 className="fs">Hi {user.name}</h4>
                             <div
-                                className={`profile-tab ${selectedTab === 'MyPurchases' ? 'active' : ''}`}
+                                className={`profile-tab ${selectedTab === 'MyPurchases' ? 'active' : ''} mb-2`}
                                 onClick={() => handleTabChange('MyPurchases')}
                             >
                                 My Purchases
                             </div>
                             <div
-                                className={`profile-tab ${selectedTab === 'PersonalDetails' ? 'active' : ''}`}
+                                className={`profile-tab ${selectedTab === 'PersonalDetails' ? 'active' : ''} mb-2`}
                                 onClick={() => handleTabChange('PersonalDetails')}
                             >
                                 Personal Details
@@ -45,11 +38,11 @@ const Profile = ({ signedIn, handleSignOut, user }) => {
                                 Log out
                             </div>
                         </div>
-                        <div className="profile-content">
-                            {selectedTab === 'MyPurchases' && <MyPurchases user={user} />}
+                        <div className="col-9 profile-content">
+                            {selectedTab === 'MyPurchases' && <MyPurchases user={user} productData={productData} />}
                             {selectedTab === 'PersonalDetails' && <PersonalDetails user={user} />}
                         </div>
-                    </>
+                    </div>
                 )}
             </div>
         </div>
