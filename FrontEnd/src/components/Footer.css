@@ -13,23 +13,30 @@ footer {
 }
 
 input[type="email"] {
+    background-color: rgba(254, 251, 246, .8);
     border: none;
-    border-radius: 11px 0 0 11px;
+    border-radius: 3px 0 0 3px;
     padding: .55em .85em;
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #3e2b2e;
 }
 
 .footer-btn {
     font-weight: 500;
-    background-color: #202020;
+    background-color: #3e2b2e;
     color: #fffffe;
     border: none;
     padding: .55em 1.25em;
-    border-radius: 0 11px 11px 0;
+    border-radius: 0 3px 3px 0;
     transition: .5s ease-in-out;
 }
 
 .footer-btn:hover {
-    background-color: #9fa8d8;
+    background-color: #e4cebe;
+    color: #3e2b2e;
+    outline: .1px solid rgba(62, 43, 46, .8);
 }
 
 .footer-bottom {

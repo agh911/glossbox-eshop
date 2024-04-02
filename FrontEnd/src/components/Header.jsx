@@ -30,10 +30,10 @@ const Header = ({ signedIn, numberOfItems }) => {
                                 <a className="nav-link" href="/shop">Shop</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/about">Our Story</a>
+                                <a className="nav-link" href="#">Our Story</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/blog">Skincare Blog</a>
+                                <a className="nav-link" href="#">Skincare Blog</a>
                             </li>
                         </ul>
                         <form className="d-flex" onSubmit={handleSearchSubmit}>

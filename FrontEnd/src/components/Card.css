@@ -1,11 +1,11 @@
 .product-card {
     max-width: 304px;
-    max-height: 445px;
+    max-height: 435px;
 }
 
 .product-card-img {
     width: 303.33px;
-    height: 353.33px;
+    height: 343.33px;
     border-radius: 3px;
     overflow: hidden;
 }
@@ -38,7 +38,7 @@
 .checkout-button {
     width: 100%;
     font-weight: 500;
-    background-color: #202020;
+    background-color: #3e2b2e;
     color: #fffffe;
     border: none;
     padding: .85em 4em;
@@ -47,7 +47,9 @@
 }
 
 .checkout-button:hover {
-    background-color: #9fa8d8;
+    background-color: #e4cebe;
+    color: #3e2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
 }
 
 .review-card,
@@ -55,4 +57,17 @@
     background-color: #faf4ef;
     border-radius: 3px;
     border: .1px solid rgba(62, 43, 46, .2);
+}
+
+.prim-font {
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+}
+
+.prim-font-sm {
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 600;
+    text-transform: capitalize;
 }

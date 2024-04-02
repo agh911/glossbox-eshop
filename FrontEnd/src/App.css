@@ -4,11 +4,28 @@
 }
 
 .prim-font {
-  font-family: "Raleway", sans-serif;
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+
+.prim-font-sm {
+  font-family: "Nanum Myeongjo", serif;
   font-weight: 600;
   text-transform: capitalize;
 }
 
 .sec-font {
   font-family: "Hind Vadodara", sans-serif;
+  font-size: 1rem;
+}
+
+.sec-font-sm {
+  font-family: "Hind Vadodara", sans-serif;
+  font-size: .9rem;
+}
+
+.thr-font {
+  font-family: "Montserrat", sans-serif;
 }

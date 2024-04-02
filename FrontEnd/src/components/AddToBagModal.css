@@ -1,10 +1,15 @@
 .modal {
     position: absolute;
-    background-color: #faf4ef;
     height: auto;
     width: 365px;
     z-index: 9999;
     top: -57%;
     left: 67%;
     transform: translate(-52%, -50%);
+}
+
+.modal-content {
+    background-color: #faf4ef;
+    border: .1px solid rgba(62, 43, 46, .8);
+    border-radius: 3px;
 }

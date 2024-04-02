@@ -1,10 +1,7 @@
 @import url('https://fonts.cdnfonts.com/css/sragentina');
 @import url('https://fonts.cdnfonts.com/css/elyaris');
 @import url('https://fonts.cdnfonts.com/css/quinsi');
-@import url('https://fonts.cdnfonts.com/css/helvetica-neue-55');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nanum+Myeongjo&display=swap');
 
 a {
     text-decoration: none;
@@ -37,7 +34,7 @@ a {
 
 .shop-btn {
     font-weight: 500;
-    background-color: #202020;
+    background-color: #3e2b2e;
     color: #fffffe;
     border: none;
     padding: .85em 4em;
@@ -46,7 +43,9 @@ a {
 }
 
 .shop-btn:hover {
-    background-color: #9fa8d8;
+    background-color: #e4cebe;
+    color: #3e2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
 }
 
 .img-container {
@@ -87,7 +86,7 @@ a {
 .expert-help-img {
     width: 253.33px;
     height: 253.33px;
-    border-radius: 11px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
