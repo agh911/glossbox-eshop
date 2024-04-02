@@ -6,7 +6,7 @@
 .product-card-img {
     width: 303.33px;
     height: 353.33px;
-    border-radius: 11px;
+    border-radius: 3px;
     overflow: hidden;
 }
 
@@ -26,11 +26,13 @@
     font-weight: 500;
 }
 
-.basket-card-img {
+.basket-card-img,
+.order-item img {
     width: 75.33px;
     height: 75.33px;
-    border-radius: 11px;
+    border-radius: 3px;
     overflow: hidden;
+    object-fit: cover;
 }
 
 .checkout-button {
@@ -40,7 +42,7 @@
     color: #fffffe;
     border: none;
     padding: .85em 4em;
-    border-radius: 11px;
+    border-radius: 3px;
     transition: .5s ease-in-out;
 }
 
@@ -48,7 +50,9 @@
     background-color: #9fa8d8;
 }
 
-.review-card {
-    background-color: #eff0f3;
-    border-radius: 5px;
+.review-card,
+.order-card {
+    background-color: #faf4ef;
+    border-radius: 3px;
+    border: .1px solid rgba(62, 43, 46, .2);
 }

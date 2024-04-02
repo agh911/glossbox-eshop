@@ -6,10 +6,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* body {
-    background-color: #eff0f3;
-} */
-
 a {
     text-decoration: none;
     color: inherit;
@@ -45,7 +41,7 @@ a {
     color: #fffffe;
     border: none;
     padding: .85em 4em;
-    border-radius: 11px;
+    border-radius: 3px;
     transition: .5s ease-in-out;
 }
 
@@ -85,7 +81,7 @@ a {
 }
 
 .quiz {
-    background-color: #eff0f3;
+    background-color: #faf4ef;
 }
 
 .expert-help-img {
@@ -102,7 +98,6 @@ a {
 @media (max-width: 768px) {
     .hero-desc {
         top: 20%;
-        /* Adjust as needed to center the text vertically */
         transform: translateY(-50%);
     }
 }

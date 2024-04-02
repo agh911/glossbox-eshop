@@ -11,7 +11,7 @@ export const placeOrder = async (req, res) => {
     }
 };
 
-export const getOrderById = async (req, res) => {
+export const getOrderId = async (req, res) => {
     try {
         const orderId = req.params.id;
         const order = await getOrderById(orderId);
@@ -25,7 +25,7 @@ export const getOrderById = async (req, res) => {
     }
 };
 
-export const getOrdersByUserId = async (req, res) => {
+export const getOrdersUserId = async (req, res) => {
     try {
         const userId = req.params.userId;
         const orders = await getOrdersByUserId(userId);

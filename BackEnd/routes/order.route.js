@@ -1,10 +1,10 @@
 import express from 'express';
-import { createOrder } from '../services/order.service';
+import { placeOrder, getOrderId, getOrdersUserId } from '../controllers/order.controller.js';
 
 const router = express.Router();
 
-router.post('/', createOrder);
-router.get('/:id', protect, getOrderById);
-router.get('/user/:userId', protect, getOrdersByUserId);
+router.post('/', placeOrder);
+router.get('/:id', getOrderId);
+router.get('/user/:userId', getOrdersUserId);
 
 export { router as orderRouter };
