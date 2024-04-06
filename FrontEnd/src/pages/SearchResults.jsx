@@ -18,8 +18,8 @@ const SearchResults = ({ productData }) => {
 
     return (
         <div className="container pt-5">
-            <h2 className="pt-2">Search Results for "{searchQuery}"</h2>
-            <div className="row">
+            <h3 className="fs mt-4">Search Results for "{searchQuery}"</h3>
+            <div className="container row">
                 {searchResults.map((product) => (
                     <div key={product._id} className="col-lg-3 col-md-6 col-sm-12">
                         <ProductCard productData={product} />
