@@ -3,7 +3,7 @@ import MyPurchases from '../components/MyPurchases';
 
 const PersonalDetails = ({ user }) => (
     <div>
-        <h4>Personal Details</h4>
+        <h4 className="fs">Personal Details</h4>
         <p>Email: {user.email}</p>
     </div>
 );

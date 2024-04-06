@@ -11,6 +11,15 @@ export const getProductData = async () => {
     }
 };
 
+export const getSingleProductData = async (productId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/product/${productId}`);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getUserData = async (userQuery) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/getUser`, userQuery);
