@@ -5,8 +5,16 @@ export const getProductDataService = async () => {
         const products = await Product.find({});
         return products;
     } catch (error) {
-        // Add appropriate error handling, such as logging the error.
         console.error("Error in getProductDataService:", error);
+        throw error;
+    }
+}
+
+export const getSingleProductDataService = async (productId) => {
+    try {
+        return await Product.findById(productId);
+    } catch (error) {
+        console.error("Error in getSingleProductDataService:", error);
         throw error;
     }
 }
