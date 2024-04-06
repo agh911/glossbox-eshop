@@ -18,21 +18,23 @@
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 3px;
     font-size: 16px;
 }
 
 .signin-form button {
     width: 100%;
     font-weight: 500;
-    background-color: #202020;
+    background-color: #3b2e2b;
     color: #fffffe;
     border: none;
     padding: .85em 4em;
-    border-radius: 11px;
+    border-radius: 3px;
     transition: .5s ease-in-out;
 }
 
 .signin-form button:hover {
-    background-color: #9fa8d8;
+    background-color: #e4cebe;
+    color: #3e2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
 }

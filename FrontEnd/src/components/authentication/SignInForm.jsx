@@ -35,7 +35,7 @@ export const SignInForm = ({ handleSignIn }) => {
 
     return (
         <div className="signin-form">
-            <h2>Sign In</h2>
+            {/* <h2 className="fs">Sign In</h2> */}
             <form onSubmit={signInSubmitHandler}>
                 <label htmlFor="email">Email:</label>
                 <input

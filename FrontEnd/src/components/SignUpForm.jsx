@@ -40,7 +40,7 @@ export const SignUpForm = () => {
 
     return (
         <div className="signup-form">
-            <h2>Sign Up</h2>
+            {/* <h2 className="fs">Sign Up</h2> */}
             <form onSubmit={signUpSubmitHandler}>
                 <label htmlFor="name">Name:</label>
                 <input
