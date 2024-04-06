@@ -19,7 +19,7 @@ const Profile = ({ signedIn, handleSignOut, user, productData }) => {
         <div className="container pt-5">
             <div className="my-4">
                 {signedIn && (
-                    <div className="row d-flex justify-content-between">
+                    <div className="container row d-flex justify-content-between">
                         <div className="col-2">
                             <h4 className="fs">Hi {user.name}</h4>
                             <div

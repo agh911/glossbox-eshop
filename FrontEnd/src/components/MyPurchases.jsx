@@ -35,7 +35,7 @@ const MyPurchases = ({ user, productData }) => {
             {orders.length > 0 ? (
                 orders.map(order => (
                     <div key={order._id} className="order-card container row mb-4 py-2">
-                        <div className="col-7">
+                        <div className="col-7 p-2">
                             <h6 className="sec-font"><strong>Products</strong></h6>
                             {order.items.map(item => (
                                 <div key={item._id} className="order-item container row mb-3">
@@ -62,7 +62,7 @@ const MyPurchases = ({ user, productData }) => {
                                 </div>
                             ))}
                         </div>
-                        <div className="col-5">
+                        <div className="col-5 p-2">
                             <h6 className='sec-font'><strong>Order details</strong></h6>
                             <div className="d-flex justify-content-between align-items-baseline">
                                 <p className="sec-font-sm"><strong>Id:</strong> {order._id}</p>
