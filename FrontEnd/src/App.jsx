@@ -16,6 +16,7 @@ import Basket from "./pages/Basket.jsx";
 import Success from "./pages/Success.jsx";
 import Cancel from "./pages/Cancel.jsx";
 import axios from "axios";
+import openSocket from 'socket.io-client';
 
 import { checkSignIn } from './components/authentication/authenticationHelpers.js';
 import { getUserData } from "../utils/dataService.js";
@@ -26,6 +27,10 @@ function App() {
   const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState(0);
+
+  const socket = openSocket('http://localhost:3000', {
+    transports: ['websocket']
+  });
 
   const navigate = useNavigate();
 
@@ -87,6 +92,15 @@ function App() {
       setNumberOfItems(0);
     }
   }, [user]);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to backend');
+    });
+    socket.on('connect_error', (error) => {
+      console.error('Socket connection error:', error);
+    });
+  }, []);
 
   return (
     <>

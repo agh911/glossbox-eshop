@@ -3,11 +3,15 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import { config } from "dotenv";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+const SERVER = createServer(app);
+const io = new Server(SERVER);
 
 config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` });
 
@@ -42,8 +46,19 @@ app.use("/api/basket", addToBasketRoute);
 app.use("/create-checkout-session", checkoutRoute);
 app.use("/", orderRouter);
 
-const SERVER = app.listen(port, host, () => {
-    console.log(`server running on https://${host}:${port}`);
+// Listen for WebSocket connections
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // Handle user disconnection
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 });
 
-export default SERVER;
+// Start listening on the specified port and host
+SERVER.listen(port, host, () => {
+    console.log(`Server running on http://${host}:${port}`);
+});
+
+export { SERVER, io };
