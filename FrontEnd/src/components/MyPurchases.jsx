@@ -66,7 +66,7 @@ const MyPurchases = ({ user, productData }) => {
                             <h6 className='sec-font'><strong>Order details</strong></h6>
                             <div className="d-flex justify-content-between align-items-baseline">
                                 <p className="sec-font-sm"><strong>Id:</strong> {order._id}</p>
-                                <span class="badge text-bg-dark">{order.status}</span>
+                                <span className="badge text-bg-dark">{order.status}</span>
                             </div>
                             <p className="sec-font-sm"><strong>Date:</strong> {formatDate(order.createdAt)}</p>
                             <p className="sec-font-sm"><strong>Total:</strong> £{order.total.toFixed(2)}</p>

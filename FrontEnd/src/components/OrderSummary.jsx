@@ -3,9 +3,24 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './Card.css';
 
-const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
+const OrderSummary = ({ user, findProductData }) => {
     const stripe = useStripe();
     const elements = useElements();
+
+
+    const numberOfItems = user && user.basket && user.basket.items
+        ? user.basket.items.reduce((total, item) => total + (item.quantity ? item.quantity : 0), 0)
+        : 0;
+
+    const calculateTotal = () => {
+        return user.basket.items.reduce((total, basketItem) => {
+            const product = findProductData(basketItem.product);
+            const itemTotal = product ? product.price * basketItem.quantity : 0;
+            return total + itemTotal;
+        }, 0);
+    };
+
+    const total = user && user.basket ? calculateTotal().toFixed(2) : 0;
 
     const orderTotal = parseFloat(total).toFixed(2);
 
@@ -35,6 +50,7 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
             console.error(error.message);
         }
     };
+
     return (
         <>
             <div className="container row">

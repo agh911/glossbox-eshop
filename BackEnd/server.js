@@ -22,7 +22,7 @@ const host = process.env.HOST;
 import { getProductDataRoute } from "./routes/getProductData.route.js";
 import { getUserDataRoute } from "./routes/getUserData.route.js";
 import { signInRoute, signUpRoute } from "./routes/auth.route.js";
-import { addToBasketRoute } from "./routes/basket.route.js"
+import { basketRoute } from "./routes/basket.route.js"
 import { checkoutRoute } from "./routes/checkout.route.js";
 import { orderRouter } from "./routes/order.route.js";
 import { validateUser } from "./middlewares/glossbox.validation.js";
@@ -42,7 +42,7 @@ app.use("/", getProductDataRoute);
 app.use("/", getUserDataRoute);
 app.use("/auth/signIn", validateUser, signInRoute);
 app.use("/auth/signUp", validateUser, signUpRoute);
-app.use("/api/basket", addToBasketRoute);
+app.use("/api/basket", basketRoute);
 app.use("/create-checkout-session", checkoutRoute);
 app.use("/", orderRouter);
 

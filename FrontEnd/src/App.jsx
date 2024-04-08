@@ -16,7 +16,7 @@ import Basket from "./pages/Basket.jsx";
 import Success from "./pages/Success.jsx";
 import Cancel from "./pages/Cancel.jsx";
 import axios from "axios";
-import openSocket from 'socket.io-client';
+import { socket } from "../utils/socket.js";
 
 import { checkSignIn } from './components/authentication/authenticationHelpers.js';
 import { getUserData } from "../utils/dataService.js";
@@ -27,10 +27,6 @@ function App() {
   const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState(0);
-
-  const socket = openSocket('http://localhost:3000', {
-    transports: ['websocket']
-  });
 
   const navigate = useNavigate();
 
@@ -113,7 +109,7 @@ function App() {
         <Route path="/search" element={<SearchResults productData={productData} />} />
         <Route path="/shop" element={<Products productData={productData} />} />
         <Route path="/product/:id" element={<SingleProduct productData={productData} user={user} />} />
-        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} />} />
+        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} setProductData={setProductData} />} />
         <Route path="/success" element={<Success />} />
         <Route path="/canceled" element={<Cancel />} />
       </Routes>

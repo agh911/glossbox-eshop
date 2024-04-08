@@ -1,4 +1,5 @@
 import axios from "axios";
+import { socket } from "./socket.js";
 
 const API_BASE_URL = "http://localhost:3000";
 
@@ -55,3 +56,30 @@ export const getUserOrderData = async (userId) => {
         return error;
     }
 };
+
+// Basket
+export const updateBasketItemQuantity = async (userId, productId, newQuantity) => {
+    try {
+        const response = await axios.put(`${API_BASE_URL}/api/basket/${userId}/${productId}`, {
+            quantity: newQuantity
+        });
+
+        socket.emit('updateQuantity', { userId, productId, quantity: newQuantity });
+
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const removeBasketItem = async (userId, productId) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/api/basket/${userId}/${productId}`);
+
+        socket.emit('removeItem', { userId, productId });
+
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
