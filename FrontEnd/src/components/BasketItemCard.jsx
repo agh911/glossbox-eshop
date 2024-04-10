@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./Card.css";
 import { getSingleProductData } from '../../utils/dataService.js';
 
 const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem }) => {

@@ -82,25 +82,16 @@ function App() {
 
   useEffect(() => {
     if (user && user.basket && user.basket.items) {
-      const totalItems = user.basket.items.reduce((acc, item) => acc + item.quantity, 0);
+      const totalItems = user.basket.items.reduce((acc, item) => acc + Number(item.quantity), 0);
       setNumberOfItems(totalItems);
     } else {
       setNumberOfItems(0);
     }
   }, [user]);
 
-  useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected to backend');
-    });
-    socket.on('connect_error', (error) => {
-      console.error('Socket connection error:', error);
-    });
-  }, []);
-
   return (
     <>
-      <Header productData={productData} signedIn={signedIn} numberOfItems={numberOfItems} />
+      <Header productData={productData} signedIn={signedIn} user={user} numberOfItems={numberOfItems} />
       <Routes>
         <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
         <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} productData={productData} />} />
@@ -108,8 +99,8 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/search" element={<SearchResults productData={productData} />} />
         <Route path="/shop" element={<Products productData={productData} />} />
-        <Route path="/product/:id" element={<SingleProduct productData={productData} user={user} />} />
-        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} setProductData={setProductData} />} />
+        <Route path="/product/:id" element={<SingleProduct user={user} setNumberOfItems={setNumberOfItems} />} />
+        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} numberOfItems={numberOfItems} setNumberOfItems={setNumberOfItems} />} />
         <Route path="/success" element={<Success />} />
         <Route path="/canceled" element={<Cancel />} />
       </Routes>

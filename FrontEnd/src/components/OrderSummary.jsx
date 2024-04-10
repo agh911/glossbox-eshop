@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './Card.css';
 
-const OrderSummary = ({ user, findProductData }) => {
+const OrderSummary = ({ user, findProductData, numberOfItems, calculateTotal, basketItems }) => {
     const stripe = useStripe();
     const elements = useElements();
 
+    const [total, setTotal] = useState(0);
 
-    const numberOfItems = user && user.basket && user.basket.items
-        ? user.basket.items.reduce((total, item) => total + (item.quantity ? item.quantity : 0), 0)
-        : 0;
+    useEffect(() => {
+        if (!user || !user.basket || !user.basket.items) {
+            return;
+        }
 
-    const calculateTotal = () => {
-        return user.basket.items.reduce((total, basketItem) => {
-            const product = findProductData(basketItem.product);
-            const itemTotal = product ? product.price * basketItem.quantity : 0;
-            return total + itemTotal;
-        }, 0);
-    };
+        const calculateTotal = () => {
+            return user.basket.items.reduce((total, basketItem) => {
+                const product = findProductData(basketItem.product);
+                const itemTotal = product ? product.price * basketItem.quantity : 0;
+                return total + itemTotal;
+            }, 0);
+        };
 
-    const total = user && user.basket ? calculateTotal().toFixed(2) : 0;
+        setTotal(calculateTotal());
+    }, [user, findProductData]);
 
-    const orderTotal = parseFloat(total).toFixed(2);
+
+    useEffect(() => {
+        setTotal(calculateTotal());
+    }, [calculateTotal, basketItems]);
 
     const handleCheckout = async () => {
         const items = user.basket.items.map(basketItem => {

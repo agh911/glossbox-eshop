@@ -6,7 +6,9 @@ import AddToBagModal from '../components/AddToBagModal';
 import ReviewCard from '../components/ReviewCard';
 import './SingleProductPage.css';
 
-const SingleProduct = ({ user }) => {
+import { socket } from '../../utils/socket.js';
+
+const SingleProduct = ({ user, setNumberOfItems }) => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -54,6 +56,9 @@ const SingleProduct = ({ user }) => {
 
             if (response.data.success) {
                 setIsSuccess(true);
+                const totalItems = response.data.basket.items.reduce((acc, item) => acc + item.quantity, 0);
+                setNumberOfItems(totalItems);
+                socket.emit('basketUpdated', { userId, basket: response.data.basket });
             } else {
                 setIsSuccess(false);
             }
