@@ -83,3 +83,18 @@ export const removeBasketItem = async (userId, productId) => {
         return error;
     }
 }
+
+// Checkout 
+export const checkout = async (user, total, items) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/create-checkout-session`, {
+            userId: user,
+            total: total,
+            items: items,
+        });
+        return response.data;
+
+    } catch (error) {
+        return error
+    }
+}

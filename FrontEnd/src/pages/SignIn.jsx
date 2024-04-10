@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { SignInForm } from "../components/authentication/SignInForm.jsx";
 import "./SigningPages.css";
 
-export const SignIn = ({ handleSignIn }) => {
+const SignIn = ({ handleSignIn }) => {
 
     return (
         <div className="container-fluid pt-4">
@@ -24,3 +24,5 @@ export const SignIn = ({ handleSignIn }) => {
         </div>
     );
 };
+
+export default SignIn;

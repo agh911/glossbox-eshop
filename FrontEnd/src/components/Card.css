@@ -72,8 +72,27 @@
     text-transform: capitalize;
 }
 
-input[type="number"] {
-    height: 40px;
-    width: 50px;
-    padding-left: 17px;
+.quantity-input {
+    width: 130px;
+}
+
+.qty-btn {
+    border-radius: 3px;
+    padding: 0.85em;
+    background-color: #3c2b2e;
+    color: #fffffe;
+}
+
+.qty-btn:hover {
+    background-color: #e4cebe;
+    color: #3c2b2e;
+    border: .1px solid rgba(62, 43, 46, .8);
+}
+
+input#quantity {
+    padding-left: 17%;
+}
+
+input#quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

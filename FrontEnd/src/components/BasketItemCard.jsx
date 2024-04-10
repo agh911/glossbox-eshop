@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import QuantityInput from './QuantityInput.jsx';
 import axios from 'axios';
 import "./Card.css";
+
 import { getSingleProductData } from '../../utils/dataService.js';
 
 const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem }) => {
@@ -61,14 +63,18 @@ const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem 
                             </div>
                         </div>
                     </div>
-                    <div className="col-2 text-center">
+                    <div className="col-2 d-flex align-items-center justify-content-center">
                         {isEditing ? (
-                            <input type="number" min="1" value={newQuantity} onChange={handleChange} />
+                            <QuantityInput
+                                value={newQuantity}
+                                onChange={setNewQuantity}
+                                min={1}
+                            />
                         ) : (
                             <p>{quantity}</p>
                         )}
                     </div>
-                    <div className="col-2 text-end">
+                    <div className="col-2 d-flex align-items-center justify-content-end">
                         <p>£{product.price.toFixed(2)}</p>
                     </div>
                 </div>

@@ -1,6 +1,5 @@
-import { signInService, signUpService, getUserByQuery } from "../services/user.service.js";
+import { signInService, signUpService } from "../services/user.service.js";
 import { validationResult } from "express-validator";
-import { io } from "../server.js";
 
 export const signInController = async (req, res) => {
     const errors = validationResult(req);
@@ -9,11 +8,6 @@ export const signInController = async (req, res) => {
     }
     try {
         const response = await signInService(req.body);
-        // Emit 'basketUpdated' event if sign-in is successful
-        if (response.message === 'Successful signed in') {
-            const user = await getUserByQuery({ email: req.body.email });
-            io.emit('basketUpdated', { userId: user._id, basket: user.basket });
-        }
         res.status(200).json(response);
     } catch (error) {
         console.log(error);
@@ -29,11 +23,6 @@ export const signUpController = async (req, res) => {
     }
     try {
         const response = await signUpService(req.body);
-        // Emit 'basketUpdated' event if sign-up is successful
-        if (response.message === 'Sign up successful.') {
-            const user = await getUserByQuery({ email: req.body.email });
-            io.emit('basketUpdated', { userId: user._id, basket: user.basket });
-        }
         res.status(200).json(response);
     } catch (error) {
         console.log(error);

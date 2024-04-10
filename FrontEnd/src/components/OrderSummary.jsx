@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
-import axios from 'axios';
 import './Card.css';
+
+import { checkout } from '../../utils/dataService';
 
 const OrderSummary = ({ user, findProductData, numberOfItems, calculateTotal, basketItems }) => {
     const stripe = useStripe();
@@ -39,19 +40,12 @@ const OrderSummary = ({ user, findProductData, numberOfItems, calculateTotal, ba
                 name: product.name,
                 price: product.price,
                 image: product.imageUrl,
-
             }
         });
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_GLOSSBOXURL}/create-checkout-session`, {
-                userId: user._id,
-                total: orderTotal,
-                items,
-            });
-
-            const data = response.data;
-            window.location = data.url;
+            const response = await checkout(user._id, total, items);
+            window.location = response.url;
         } catch (error) {
             console.error(error.message);
         }
