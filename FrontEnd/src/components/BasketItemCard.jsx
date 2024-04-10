@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import QuantityInput from './QuantityInput.jsx';
-import axios from 'axios';
 import "./Card.css";
 
-import { getSingleProductData } from '../../utils/dataService.js';
+import { getSingleProductData, updateBasketItemQuantity } from '../../utils/dataService.js';
 
 const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem }) => {
     const [product, setProduct] = useState(null);
@@ -28,9 +27,7 @@ const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem 
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`${import.meta.env.VITE_GLOSSBOXURL}/api/basket/${user._id}/${productId}`, {
-                quantity: newQuantity,
-            });
+            await updateBasketItemQuantity(user._id, productId, newQuantity);
             updateQuantity(productId, newQuantity);
             setIsEditing(false);
         } catch (error) {

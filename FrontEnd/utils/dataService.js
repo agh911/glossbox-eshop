@@ -58,6 +58,15 @@ export const getUserOrderData = async (userId) => {
 };
 
 // Basket
+export const addToBasket = async (userId, productId, quantity) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/api/basket`, { userId, productId, quantity });
+        return response.data;
+    } catch (error) {
+        return error
+    }
+}
+
 export const updateBasketItemQuantity = async (userId, productId, newQuantity) => {
     try {
         const response = await axios.put(`${API_BASE_URL}/api/basket/${userId}/${productId}`, {

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignUpForm.css';
@@ -6,7 +5,6 @@ import './SignUpForm.css';
 import { signUpService } from '../../utils/dataService';
 
 export const SignUpForm = () => {
-    // console.log('VITE_GLOSSBOXURL:', import.meta.env.VITE_GLOSSBOXURL);
     const [signUp, setSignUp] = useState({
         name: '',
         username: '',

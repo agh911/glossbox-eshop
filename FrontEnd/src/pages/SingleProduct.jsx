@@ -3,11 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import QuantityInput from '../components/QuantityInput.jsx';
 import AddToBagModal from '../components/AddToBagModal';
 import ReviewCard from '../components/ReviewCard';
-import axios from 'axios';
-
 import './SingleProductPage.css';
 
-import { getSingleProductData } from '../../utils/dataService.js';
+import { getSingleProductData, addToBasket } from '../../utils/dataService.js';
 import { socket } from '../../utils/socket.js';
 
 const SingleProduct = ({ user, setNumberOfItems }) => {
@@ -36,18 +34,16 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
     }, [id, navigate]);
 
     const handleAddToBag = async () => {
-        const addToBagEndpoint = 'http://localhost:3000/api/basket';
-
         try {
             const userId = user._id;
 
-            const response = await axios.post(addToBagEndpoint, { userId, productId: product._id, quantity: selectedQuantity });
+            const response = await addToBasket(userId, product._id, selectedQuantity);
 
-            if (response.data.success) {
+            if (response.success) {
                 setIsSuccess(true);
-                const totalItems = response.data.basket.items.reduce((acc, item) => acc + item.quantity, 0);
+                const totalItems = response.basket.items.reduce((acc, item) => acc + item.quantity, 0);
                 setNumberOfItems(totalItems);
-                socket.emit('basketUpdated', { userId, basket: response.data.basket });
+                socket.emit('basketUpdated', { userId, basket: response.basket });
             } else {
                 setIsSuccess(false);
             }

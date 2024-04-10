@@ -106,7 +106,12 @@ const Basket = ({ signedIn, user, productData, numberOfItems, setNumberOfItems }
                     )}
                 </div>
                 <div className="col-3 mb-3">
-                    <OrderSummary user={user} findProductData={findProductData} numberOfItems={numberOfItems} basketItems={basketItems} calculateTotal={calculateTotalPrice} />
+                    <OrderSummary
+                        user={user}
+                        findProductData={findProductData}
+                        numberOfItems={numberOfItems}
+                        basketItems={basketItems}
+                        calculateTotal={calculateTotalPrice} />
                 </div>
             </div>
         </div>
