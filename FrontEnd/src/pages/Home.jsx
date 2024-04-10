@@ -1,8 +1,8 @@
 import React from 'react';
-import "./Home.css";
 import ProductCard from '../components/ProductCard';
+import "./Home.css";
 
-const Home = ({ productData, signedIn, user }) => {
+const Home = ({ productData }) => {
     const firstThreeProducts = productData.length > 0 ? productData.slice(0, 3) : [];
 
     return (
