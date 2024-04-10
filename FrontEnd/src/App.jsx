@@ -1,13 +1,10 @@
-import "./App.css";
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Routes, Route } from 'react-router-dom';
-import { getData } from "../utils/dataHandlers.js";
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
-import { SignIn } from "./pages/SignIn.jsx";
-import { SignUp } from "./pages/SignUp.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import SignUp from "./pages/SignUp.jsx";
 import Profile from "./pages/Profile.jsx";
 import Products from "./pages/Products.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
@@ -15,11 +12,11 @@ import SingleProduct from "./pages/SingleProduct";
 import Basket from "./pages/Basket.jsx";
 import Success from "./pages/Success.jsx";
 import Cancel from "./pages/Cancel.jsx";
-import axios from "axios";
-import { socket } from "../utils/socket.js";
+import "./App.css";
 
-import { checkSignIn } from './components/authentication/authenticationHelpers.js';
+import { getData } from "../utils/dataHandlers.js";
 import { getUserData } from "../utils/dataService.js";
+import { checkSignIn } from './components/authentication/authenticationHelpers.js';
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -27,58 +24,27 @@ function App() {
   const [email, setEmail] = useState(null);
   const [productData, setProductData] = useState([]);
   const [numberOfItems, setNumberOfItems] = useState(0);
-
   const navigate = useNavigate();
 
-  const handleSignIn = async ({ email, password }) => {
-    const signedIn = await checkSignIn({ email, password });
-    if (signedIn) {
-      setEmail(email);
-    }
-  }
-
   useEffect(() => {
-    const storedEmail = localStorage.getItem('email');
-    if (storedEmail) {
-      setEmail(storedEmail);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (email == null) {
-      return;
-    }
-    async function fetchUserData() {
-      const userQuery = {
-        'email': email
+    const fetchData = async () => {
+      try {
+        const storedEmail = localStorage.getItem('email');
+        if (storedEmail) {
+          setEmail(storedEmail);
+          const userQuery = { email: storedEmail };
+          const user = await getUserData(userQuery);
+          setUser(user);
+          setSignedIn(true);
+        }
+        const response = await getData();
+        setProductData(response);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      const user = await getUserData(userQuery);
-      setUser(user);
-      setSignedIn(true);
-    }
-    fetchUserData();
-  }, [email]);
-
-  const handleSignOut = () => {
-    localStorage.removeItem('email');
-    localStorage.removeItem('token');
-    setSignedIn(false);
-    navigate('/');
-  }
-
-  useEffect(() => {
-    fetchProductData();
+    };
+    fetchData();
   }, []);
-
-  const fetchProductData = async () => {
-    try {
-      const response = await getData();
-      // console.log(response);
-      setProductData(response);
-    } catch (error) {
-      return error;
-    }
-  };
 
   useEffect(() => {
     if (user && user.basket && user.basket.items) {
@@ -88,6 +54,21 @@ function App() {
       setNumberOfItems(0);
     }
   }, [user]);
+
+  const handleSignIn = async ({ email, password }) => {
+    const signedIn = await checkSignIn({ email, password });
+    if (signedIn) {
+      setEmail(email);
+      navigate('/');
+    }
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('email');
+    setUser(null);
+    setSignedIn(false);
+    navigate('/');
+  };
 
   return (
     <>

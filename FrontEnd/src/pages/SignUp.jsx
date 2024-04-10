@@ -1,7 +1,7 @@
 import { SignUpForm } from "../components/SignUpForm.jsx";
 import "./SigningPages.css";
 
-export const SignUp = () => {
+const SignUp = () => {
     return (
         <div className="container-fluid pt-4">
             <div className="d-flex align-content-center mt-3">
@@ -18,3 +18,5 @@ export const SignUp = () => {
         </div>
     );
 };
+
+export default SignUp;
