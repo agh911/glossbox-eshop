@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import BasketItemCard from '../components/BasketItemCard';
-import OrderSummary from '../components/OrderSummary';
+import BasketItemCard from '../components/BasketItemCard.jsx';
+import OrderSummary from '../components/OrderSummary.jsx';
+import PageWrapper from '../components/PageWrapper.jsx';
 
 import { removeBasketItem, updateBasketItemQuantity } from '../../utils/dataService.js';
 import { socket } from '../../utils/socket.js';
@@ -74,7 +75,7 @@ const Basket = ({ signedIn, user, productData, numberOfItems, setNumberOfItems }
     };
 
     return (
-        <div className="container pt-5 mb-5">
+        <PageWrapper>
             <h3 className="fs pt-4">Your Basket</h3>
             <div className="container row d-flex justify-content-between">
                 <div className="col-8">
@@ -114,7 +115,7 @@ const Basket = ({ signedIn, user, productData, numberOfItems, setNumberOfItems }
                         calculateTotal={calculateTotalPrice} />
                 </div>
             </div>
-        </div>
+        </PageWrapper>
     );
 }
 

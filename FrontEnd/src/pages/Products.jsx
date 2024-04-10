@@ -1,9 +1,10 @@
 import React from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/ProductCard.jsx';
+import PageWrapper from '../components/PageWrapper.jsx';
 
 const Products = ({ productData, addToBasket }) => {
     return (
-        <div className="container mb-5 pt-5">
+        <PageWrapper>
             <h3 className="fs pt-4 mb-3">Products</h3>
             <div className="row mx-auto">
                 {productData.map((product) => (
@@ -12,7 +13,7 @@ const Products = ({ productData, addToBasket }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </PageWrapper>
     );
 }
 

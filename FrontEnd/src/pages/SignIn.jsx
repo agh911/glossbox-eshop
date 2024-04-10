@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { SignInForm } from "../components/authentication/SignInForm.jsx";
+import PageWrapper from "../components/PageWrapper.jsx";
 import "./SigningPages.css";
 
 const SignIn = ({ handleSignIn }) => {
 
     return (
-        <div className="container-fluid pt-4">
+        <PageWrapper>
             <div className="d-flex justify-content-center mt-3">
                 <div className="col d-flex flex-column align-items-center justify-content-center my-5">
                     <h1 className="fs">Welcome to GlossBox</h1>
@@ -19,7 +20,7 @@ const SignIn = ({ handleSignIn }) => {
                     </a>
                 </div>
             </div>
-        </div>
+        </PageWrapper>
     );
 };
 

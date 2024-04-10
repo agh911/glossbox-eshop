@@ -1,19 +1,23 @@
-.signin-form {
+.signin-form,
+.signup-form {
     max-width: 400px;
     padding: 20px;
 }
 
-.signin-form h2 {
+.signin-form h2,
+.signup-form h2 {
     margin-bottom: 20px;
 }
 
-.signin-form label {
+.signin-form label,
+.signup-form label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
 }
 
-.signin-form input {
+.signin-form input,
+.signup-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
@@ -22,7 +26,8 @@
     font-size: 16px;
 }
 
-.signin-form button {
+.signin-form button,
+.signup-form button {
     width: 100%;
     font-weight: 500;
     background-color: #3b2e2b;
@@ -33,7 +38,8 @@
     transition: .5s ease-in-out;
 }
 
-.signin-form button:hover {
+.signin-form button:hover,
+.signup-form button:hover {
     background-color: #e4cebe;
     color: #3e2b2e;
     border: .1px solid rgba(62, 43, 46, .8);

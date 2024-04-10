@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getUserOrderData } from '../../utils/dataService.js';
+import { getUserOrderData, getSingleProductData } from '../../utils/dataService.js';
 import "./Card.css";
 
 const MyPurchases = ({ user, productData }) => {
     const [orders, setOrders] = useState([]);
+    const [products, setProducts] = useState({});
 
     useEffect(() => {
         const fetchOrderData = async () => {
@@ -19,9 +20,27 @@ const MyPurchases = ({ user, productData }) => {
         fetchOrderData();
     }, [user._id]);
 
-    const findProductData = (productId) => {
-        return productData.find((product) => product._id === productId);
-    };
+    useEffect(() => {
+        const fetchProductData = async (productId) => {
+            try {
+                const product = await getSingleProductData(productId);
+                setProducts(prevState => ({
+                    ...prevState,
+                    [productId]: product
+                }));
+            } catch (error) {
+                console.error('Error fetching product data:', error);
+            }
+        };
+
+        orders.forEach(order => {
+            order.items.forEach(item => {
+                if (!products[item.productId]) {
+                    fetchProductData(item.productId);
+                }
+            });
+        });
+    }, [orders]);
 
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'long', year: 'numeric' };
@@ -40,12 +59,12 @@ const MyPurchases = ({ user, productData }) => {
                             {order.items.map(item => (
                                 <div key={item._id} className="order-item container row mb-3">
                                     <div className="col-2">
-                                        <img src={findProductData(item.productId).imageUrl} alt={findProductData(item.productId).name} />
+                                        <img src={products[item.productId]?.imageUrl} alt={products[item.productId]?.name} />
                                     </div>
                                     <div className="col-10">
                                         <div className="container row">
                                             <div className="col-12">
-                                                <p className="sec-font-sm">{findProductData(item.productId).name}</p>
+                                                <p className="sec-font-sm">{products[item.productId]?.name}</p>
                                             </div>
                                             <div className="col-12">
                                                 <div className="container row">
@@ -79,6 +98,5 @@ const MyPurchases = ({ user, productData }) => {
         </div>
     )
 };
-
 
 export default MyPurchases;

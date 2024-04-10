@@ -112,7 +112,7 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
                                 <hr className="mt-0 mb-3" />
                             </a>
                             <div className="collapse mb-3" id="productIngredients">
-                                <p className="sec-font-sm">Aqua (Water), Niacinamide, Pentylene Glycol, Zinc PCA, Dimethyl Isosorbide, Tamarindus Indica Seed Gum, Xanthan Gum, Isoceteth-20, Ethoxydiglycol, Phenoxyethanol, Chlorphenesin.</p>
+                                <p className="sec-font-sm">{product.ingredients.join(', ')}</p>
                             </div>
                         </div>
                         <div>
