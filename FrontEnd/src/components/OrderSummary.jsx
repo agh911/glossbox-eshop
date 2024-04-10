@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import './Card.css';
 
-const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
+const OrderSummary = ({ user, findProductData, numberOfItems, calculateTotal, basketItems }) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    const orderTotal = parseFloat(total).toFixed(2);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        if (!user || !user.basket || !user.basket.items) {
+            return;
+        }
+
+        const calculateTotal = () => {
+            return user.basket.items.reduce((total, basketItem) => {
+                const product = findProductData(basketItem.product);
+                const itemTotal = product ? product.price * basketItem.quantity : 0;
+                return total + itemTotal;
+            }, 0);
+        };
+
+        setTotal(calculateTotal());
+    }, [user, findProductData]);
+
+
+    useEffect(() => {
+        setTotal(calculateTotal());
+    }, [calculateTotal, basketItems]);
 
     const handleCheckout = async () => {
         const items = user.basket.items.map(basketItem => {
@@ -35,6 +56,7 @@ const OrderSummary = ({ user, numberOfItems, total, findProductData }) => {
             console.error(error.message);
         }
     };
+
     return (
         <>
             <div className="container row">

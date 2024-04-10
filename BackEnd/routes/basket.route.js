@@ -7,4 +7,4 @@ router.post('/', addToBasketController);
 router.put('/:userId/:productId', updateBasketItemQuantityController);
 router.delete('/:userId/:productId', removeFromBasketController);
 
-export { router as addToBasketRoute };
+export { router as basketRoute };

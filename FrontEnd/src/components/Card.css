@@ -71,3 +71,9 @@
     font-weight: 600;
     text-transform: capitalize;
 }
+
+input[type="number"] {
+    height: 40px;
+    width: 50px;
+    padding-left: 17px;
+}

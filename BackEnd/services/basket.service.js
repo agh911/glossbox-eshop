@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
 import Product from '../models/product.model.js';
+import { io } from '../server.js';
 
 export const addToBasket = async (userId, productId, quantity) => {
     try {
@@ -31,6 +32,8 @@ export const addToBasket = async (userId, productId, quantity) => {
         }
 
         await user.save();
+
+        io.emit('itemAdded', { userId, productId, quantity });
 
         return user.basket;
     } catch (error) {
@@ -64,6 +67,8 @@ export const updateBasketItemQuantity = async (userId, productId, quantity) => {
 
         await user.save();
 
+        io.emit('itemQuantityUpdated', { userId, productId, quantity });
+
         return user.basket;
     } catch (error) {
         throw error;
@@ -84,6 +89,8 @@ export const removeFromBasket = async (userId, productId) => {
 
         await user.save();
 
+        io.emit('itemRemoved', { userId, productId });
+
         return user.basket;
     } catch (error) {
         throw error;
@@ -101,6 +108,8 @@ export const removeAllBasketItems = async (userId) => {
         user.basket.items = [];
 
         await user.save();
+
+        io.emit('allItemsRemoved', { userId });
 
         return user.basket;
     } catch (error) {

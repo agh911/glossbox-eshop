@@ -1,32 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BasketItemCard from '../components/BasketItemCard';
 import OrderSummary from '../components/OrderSummary';
-import axios from 'axios';
 
-const Basket = ({ signedIn, user, productData, setProductData }) => {
+import { removeBasketItem, updateBasketItemQuantity } from '../../utils/dataService.js';
+import { socket } from '../../utils/socket.js';
+
+const Basket = ({ signedIn, user, productData, numberOfItems, setNumberOfItems }) => {
+    const [basketItems, setBasketItems] = useState([]);
+
     const findProductData = (productId) => {
         return productData.find((product) => product._id === productId);
     };
 
-    const numberOfItems = user && user.basket && user.basket.items
-        ? user.basket.items.reduce((total, item) => total + (item.quantity ? item.quantity : 0), 0)
-        : 0;
+    useEffect(() => {
+        if (signedIn && user) {
+            setBasketItems(user.basket.items);
+        }
+    }, [signedIn, user]);
 
-    const calculateTotal = () => {
-        return user.basket.items.reduce((total, basketItem) => {
-            const product = findProductData(basketItem.product);
-            const itemTotal = product ? product.price * basketItem.quantity : 0;
-            return total + itemTotal;
-        }, 0);
+    useEffect(() => {
+        socket.on('basketUpdated', handleBasketUpdate);
+
+        return () => {
+            socket.off('basketUpdated', handleBasketUpdate);
+        };
+    }, []);
+
+    const handleBasketUpdate = ({ userId, basket }) => {
+        if (user && userId === user._id) {
+            setBasketItems(basket.items);
+            updateNumberOfItems(basket.items);
+        }
     };
-
-    const total = user && user.basket ? calculateTotal().toFixed(2) : 0;
 
     const removeItem = async (productId) => {
         try {
-            await axios.delete(`${import.meta.env.VITE_GLOSSBOXURL}/api/basket/${user._id}/${productId}`);
-            const updatedProductData = productData.filter(product => product._id !== productId);
-            setProductData(updatedProductData);
+            await removeBasketItem(user._id, productId);
+            const updatedBasketItems = basketItems.filter(item => item.product !== productId);
+            setBasketItems(updatedBasketItems);
+            updateNumberOfItems(updatedBasketItems);
         } catch (error) {
             console.error(error.message);
         }
@@ -34,19 +46,31 @@ const Basket = ({ signedIn, user, productData, setProductData }) => {
 
     const updateQuantity = async (productId, newQuantity) => {
         try {
-            const updatedBasket = user.basket.items.map(item => {
+            await updateBasketItemQuantity(user._id, productId, newQuantity);
+            const updatedBasketItems = basketItems.map(item => {
                 if (item.product === productId) {
                     return { ...item, quantity: newQuantity };
                 }
                 return item;
             });
-            await axios.put(`${import.meta.env.VITE_GLOSSBOXURL}/api/basket/${user._id}/${productId}`, {
-                items: updatedBasket
-            });
-            setProductData(updatedBasket);
+            setBasketItems(updatedBasketItems);
+            updateNumberOfItems(updatedBasketItems);
         } catch (error) {
             console.error(error.message);
         }
+    };
+
+    const updateNumberOfItems = (items) => {
+        const totalItems = items.reduce((acc, item) => acc + Number(item.quantity), 0);
+        setNumberOfItems(totalItems);
+    };
+
+    const calculateTotalPrice = () => {
+        return basketItems.reduce((total, item) => {
+            const product = findProductData(item.product);
+            const itemTotal = product ? product.price * item.quantity : 0;
+            return total + itemTotal;
+        }, 0).toFixed(2);
     };
 
     return (
@@ -68,24 +92,21 @@ const Basket = ({ signedIn, user, productData, setProductData }) => {
                     <hr />
                     {signedIn && (
                         <div>
-                            {user.basket.items.map((basketItem) => {
-                                const product = findProductData(basketItem.product);
-                                return (
-                                    <BasketItemCard
-                                        key={basketItem._id}
-                                        user={user}
-                                        product={product}
-                                        quantity={basketItem.quantity}
-                                        updateQuantity={updateQuantity}
-                                        removeItem={removeItem}
-                                    />
-                                );
-                            })}
+                            {basketItems.map((basketItem) => (
+                                <BasketItemCard
+                                    key={basketItem._id}
+                                    user={user}
+                                    productId={basketItem.product}
+                                    quantity={basketItem.quantity}
+                                    updateQuantity={updateQuantity}
+                                    removeItem={removeItem}
+                                />
+                            ))}
                         </div>
                     )}
                 </div>
                 <div className="col-3 mb-3">
-                    <OrderSummary user={user} numberOfItems={numberOfItems} total={total} findProductData={findProductData} />
+                    <OrderSummary user={user} findProductData={findProductData} numberOfItems={numberOfItems} basketItems={basketItems} calculateTotal={calculateTotalPrice} />
                 </div>
             </div>
         </div>
