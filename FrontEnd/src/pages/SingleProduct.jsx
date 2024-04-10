@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { getSingleProductData } from '../../utils/dataService.js';
+import QuantityInput from '../components/QuantityInput.jsx';
 import AddToBagModal from '../components/AddToBagModal';
 import ReviewCard from '../components/ReviewCard';
+import axios from 'axios';
+
 import './SingleProductPage.css';
 
+import { getSingleProductData } from '../../utils/dataService.js';
 import { socket } from '../../utils/socket.js';
 
 const SingleProduct = ({ user, setNumberOfItems }) => {
@@ -32,19 +34,6 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
 
         fetchProductData();
     }, [id, navigate]);
-
-    const handleQuantityChange = (event) => {
-        const value = parseInt(event.target.value, 10);
-        setSelectedQuantity(value > 0 ? value : 1);
-    };
-
-    const handleIncrement = () => {
-        setSelectedQuantity((prevQuantity) => prevQuantity + 1);
-    };
-
-    const handleDecrement = () => {
-        setSelectedQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-    };
 
     const handleAddToBag = async () => {
         const addToBagEndpoint = 'http://localhost:3000/api/basket';
@@ -134,25 +123,12 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
                             <div className="d-flex justify-content-between align-items-end flex-wrap mt-5 position-relative">
                                 <h4 className="thr-font">£{product.price.toFixed(2)}</h4>
                                 <div className="d-flex flex-wrap">
-                                    <div className="quantity-input me-2">
-                                        <div className="input-group">
-                                            <button className="btn qty-btn" onClick={handleDecrement}>
-                                                -
-                                            </button>
-                                            <input
-                                                type="number"
-                                                id="quantity"
-                                                value={selectedQuantity}
-                                                onChange={handleQuantityChange}
-                                                className="form-control"
-                                                min="1"
-                                            />
-                                            <button className="btn qty-btn" onClick={handleIncrement}>
-                                                +
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <button className="btn btn-primary shop-btn" onClick={handleAddToBag}>
+                                    <QuantityInput
+                                        value={selectedQuantity}
+                                        onChange={setSelectedQuantity}
+                                        min={1}
+                                    />
+                                    <button className="btn btn-primary shop-btn ms-2" onClick={handleAddToBag}>
                                         Add to bag <ion-icon name="bag" />
                                     </button>
                                 </div>
