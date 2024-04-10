@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/ProductCard.jsx';
+import PageWrapper from '../components/PageWrapper.jsx';
 
 const SearchResults = ({ productData }) => {
     const location = useLocation();
@@ -17,7 +18,7 @@ const SearchResults = ({ productData }) => {
     }, [productData, searchQuery, location.search]);
 
     return (
-        <div className="container pt-5">
+        <PageWrapper>
             <h3 className="fs mt-4">Search Results for "{searchQuery}"</h3>
             <div className="container row">
                 {searchResults.map((product) => (
@@ -26,7 +27,7 @@ const SearchResults = ({ productData }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </PageWrapper>
     );
 };
 

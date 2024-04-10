@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import MyPurchases from '../components/MyPurchases';
+import MyPurchases from '../components/MyPurchases.jsx';
+import PageWrapper from '../components/PageWrapper.jsx';
 
 const PersonalDetails = ({ user }) => (
     <div>
@@ -16,7 +17,7 @@ const Profile = ({ signedIn, handleSignOut, user, productData }) => {
     };
 
     return (
-        <div className="container pt-5">
+        <PageWrapper>
             <div className="my-4">
                 {signedIn && (
                     <div className="container row d-flex justify-content-between">
@@ -45,7 +46,7 @@ const Profile = ({ signedIn, handleSignOut, user, productData }) => {
                     </div>
                 )}
             </div>
-        </div>
+        </PageWrapper>
     );
 };
 

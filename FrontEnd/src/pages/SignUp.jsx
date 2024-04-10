@@ -1,9 +1,10 @@
 import { SignUpForm } from "../components/SignUpForm.jsx";
+import PageWrapper from "../components/PageWrapper.jsx";
 import "./SigningPages.css";
 
 const SignUp = () => {
     return (
-        <div className="container-fluid pt-4">
+        <PageWrapper>
             <div className="d-flex align-content-center mt-3">
                 <div className="col d-flex flex-column align-items-center justify-content-center my-5">
                     <h1 className="fs">Join GlossBox!</h1>
@@ -15,7 +16,7 @@ const SignUp = () => {
                     </a>
                 </div>
             </div>
-        </div>
+        </PageWrapper>
     );
 };
 
