@@ -51,12 +51,12 @@ const BasketItemCard = ({ user, productId, quantity, updateQuantity, removeItem 
                             <p className="ms-4">{product.name}</p>
                             <div className="d-flex align-items-center ms-4">
                                 {isEditing ? (
-                                    <button className="btn" onClick={handleUpdate}>Update</button>
+                                    <button className="btn btn-sm" onClick={handleUpdate}>Update</button>
                                 ) : (
-                                    <button className="btn" onClick={toggleEdit}>Edit</button>
+                                    <button className="btn btn-sm" onClick={toggleEdit}>Edit</button>
                                 )}
                                 <p className="mb-0">&nbsp;&nbsp;/&nbsp;&nbsp;</p>
-                                <button className="btn" onClick={() => removeItem(productId)}>Remove</button>
+                                <button className="btn btn-sm" onClick={() => removeItem(productId)}>Remove</button>
                             </div>
                         </div>
                     </div>
