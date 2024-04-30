@@ -35,7 +35,7 @@ export const signUpService = async reqBody => {
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            return { message: 'Email is already in use.' };
+            return { status: 400, message: 'Email is already in use.' };
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -49,10 +49,10 @@ export const signUpService = async reqBody => {
 
         await newUser.save();
 
-        return { message: 'Sign up successful.' };
+        return { status: 200, message: 'Sign up successful.' };
     } catch (error) {
         console.error("Error during signup:", error);
-        return { message: 'Internal server error.', error: error.message };
+        return { status: 500, message: 'Internal server error.', error: error.message };
     }
 }
 

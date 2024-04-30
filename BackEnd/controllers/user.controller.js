@@ -5,10 +5,15 @@ export const getUser = async (req, res) => {
     try {
         const { email } = req.body;
         const users = await getUserByQuery({ 'email': email });
+
+        if (users.length === 0) {
+            return res.status(404).send(`Apologies, we were not able to find this user.`);
+        }
+
         res.json(users[0])
     } catch (e) {
         console.log(e);
-        res.status(404).send(`Apologies, we were not able to find this user.`);
+        res.status(500).send(`Internal server error.`);
     }
 }
 
@@ -27,7 +32,6 @@ export const signInController = async (req, res) => {
 }
 
 export const signUpController = async (req, res) => {
-    console.log('Request Body:', req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).send('Sign Up failed');
