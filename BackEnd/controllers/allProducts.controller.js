@@ -14,11 +14,11 @@ export const singleProduct = async (req, res) => {
         const productId = req.params.productId;
         const product = await getSingleProductDataService(productId);
         if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
+            return res.status(404).json({ message: 'Product not found.' });
         }
         return res.json(product);
     } catch (error) {
         console.error("Error in singleProduct controller:", error);
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error.' });
     }
 }
