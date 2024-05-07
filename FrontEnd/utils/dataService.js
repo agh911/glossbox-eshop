@@ -1,7 +1,8 @@
 import axios from "axios";
 import { socket } from "./socket.js";
 
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://glossbox-eshop.onrender.com";
+// const API_BASE_URL = "http://localhost:3000";
 
 export const getProductData = async () => {
     try {
