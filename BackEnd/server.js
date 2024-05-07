@@ -15,7 +15,7 @@ const io = new Server(SERVER);
 
 config({ path: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}` });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const host = process.env.HOST;
 
 //*Importing routes
