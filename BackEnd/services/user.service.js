@@ -17,9 +17,9 @@ export const signInService = async reqBody => {
         if (user && isValidPassword) {
             const token = jwt.sign({ userId: user._id, email: user.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-            return { message: 'Successful signed in', user, token };
+            return { message: 'Successful sign in.', user, token };
         } else {
-            return { message: 'Invalid credentials' };
+            return { message: 'Invalid credentials.' };
         }
 
     } catch (error) {
@@ -35,7 +35,7 @@ export const signUpService = async reqBody => {
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
-            return { status: 400, message: 'Email is already in use.' };
+            return { message: 'Email is already in use.' };
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -49,10 +49,10 @@ export const signUpService = async reqBody => {
 
         await newUser.save();
 
-        return { status: 200, message: 'Sign up successful.' };
+        return { message: 'Sign up successful.' };
     } catch (error) {
         console.error("Error during signup:", error);
-        return { status: 500, message: 'Internal server error.', error: error.message };
+        return { message: 'Internal server error.', error: error.message };
     }
 }
 

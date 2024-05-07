@@ -38,7 +38,7 @@ describe('User API Tests', () => {
                     password: 'secretPassword123'
                 });
 
-            expect(res.body).to.have.property('status').equal(400);
+            expect(res).to.have.status(409);
             expect(res.body).to.have.property('message').equal('Email is already in use.');
         });
     });
@@ -53,7 +53,7 @@ describe('User API Tests', () => {
                 });
 
             expect(res).to.have.status(200);
-            expect(res.body).to.have.property('message').equal('Successful signed in');
+            expect(res.body).to.have.property('message').equal('Successful sign in.');
         });
 
         it('should return an error with invalid credentials', async () => {
@@ -64,8 +64,8 @@ describe('User API Tests', () => {
                     password: 'wrongpassword123'
                 });
 
-            // expect(res).to.have.status(422);
-            expect(res.body).to.have.property('message').equal('Invalid credentials');
+            expect(res).to.have.status(401);
+            expect(res.body).to.have.property('message').equal('Invalid credentials.');
         });
     });
 

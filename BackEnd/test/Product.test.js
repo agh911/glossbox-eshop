@@ -26,7 +26,7 @@ describe('Products request', () => {
     });
 
     describe('getSingleProductDataService', () => {
-        it('should /GET a single product by IDt', async () => {
+        it('should /GET a single product by ID', async () => {
             const res = await testServer
                 .get(`/product/${productId}`);
 
@@ -41,7 +41,7 @@ describe('Products request', () => {
                 .get(`/product/${invalidProductId}`);
 
             expect(res).to.have.status(404);
-            expect(res.body).to.have.property('message').equal("Product not found");
+            expect(res.body).to.have.property('message').equal("Product not found.");
         });
 
         it('should return an error if fetching single product with an invalid ID format', async () => {
@@ -49,7 +49,7 @@ describe('Products request', () => {
                 .get(`/product/invalidProductId`);
 
             expect(res).to.have.status(500);
-            expect(res.body).to.have.property('message').equal('Internal server error');
+            expect(res.body).to.have.property('message').equal('Internal server error.');
         });
     });
 });
