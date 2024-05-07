@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const checkSignIn = async ({ email, password }) => {
     try {
-        const signInReturn = await axios.post(`http://localhost:3000/auth/signIn`, { email, password });
+        const signInReturn = await axios.post(`https://glossbox-eshop.onrender.com/auth/signIn`, { email, password });
         console.log("SignIn Response:", signInReturn);
 
         const { user, token } = signInReturn.data;
@@ -19,3 +19,5 @@ export const checkSignIn = async ({ email, password }) => {
         return false;
     }
 }
+
+// http://localhost:3000/auth/signIn
