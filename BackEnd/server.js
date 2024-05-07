@@ -9,7 +9,12 @@ import { Server } from "socket.io";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+const whitelist = [process.env.WEB_APP_URI, "https://glossbox.netlify.app/"];
+const corsOptions = { origin: whitelist, credentials: true };
+
+app.use(cors(corsOptions));
+
 const SERVER = createServer(app);
 const io = new Server(SERVER);
 
