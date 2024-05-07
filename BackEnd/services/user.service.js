@@ -17,9 +17,9 @@ export const signInService = async reqBody => {
         if (user && isValidPassword) {
             const token = jwt.sign({ userId: user._id, email: user.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-            return { message: 'Successful signed in', user, token };
+            return { message: 'Successful sign in.', user, token };
         } else {
-            return { message: 'Invalid credentials' };
+            return { message: 'Invalid credentials.' };
         }
 
     } catch (error) {
