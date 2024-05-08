@@ -71,22 +71,24 @@ function App() {
   };
 
   return (
-    <>
+    <div className='d-flex flex-column min-vh-100'>
       <Header productData={productData} signedIn={signedIn} user={user} numberOfItems={numberOfItems} />
-      <Routes>
-        <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
-        <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} productData={productData} />} />
-        <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/search" element={<SearchResults productData={productData} />} />
-        <Route path="/shop" element={<Products productData={productData} />} />
-        <Route path="/product/:id" element={<SingleProduct user={user} setNumberOfItems={setNumberOfItems} />} />
-        <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} numberOfItems={numberOfItems} setNumberOfItems={setNumberOfItems} />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/canceled" element={<Cancel />} />
-      </Routes>
+      <div className="flex-grow-1">
+        <Routes>
+          <Route path="/" element={<Home productData={productData} signedIn={signedIn} user={user} />} />
+          <Route path="/profile" element={<Profile signedIn={signedIn} handleSignOut={handleSignOut} user={user} productData={productData} />} />
+          <Route path="/signIn" element={<SignIn handleSignIn={handleSignIn} />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/search" element={<SearchResults productData={productData} />} />
+          <Route path="/shop" element={<Products productData={productData} />} />
+          <Route path="/product/:id" element={<SingleProduct user={user} setNumberOfItems={setNumberOfItems} />} />
+          <Route path="/basket" element={<Basket signedIn={signedIn} user={user} productData={productData} numberOfItems={numberOfItems} setNumberOfItems={setNumberOfItems} />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/canceled" element={<Cancel />} />
+        </Routes>
+      </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
