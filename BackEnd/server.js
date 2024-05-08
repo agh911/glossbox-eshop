@@ -6,14 +6,15 @@ import { config } from "dotenv";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
+const corsOptions = {
+    origin: process.env.WEB_APP_URL,
+    optionsSuccessStatus: 200
+};
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-    origin: 'https://glossbox.netlify.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors(corsOptions));
 
 const SERVER = createServer(app);
 const io = new Server(SERVER);
