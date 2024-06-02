@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AddToBagModal.css";
+import "./Card.css";
 
 const AddToBagModal = ({ showModal, isSuccess }) => {
     return (

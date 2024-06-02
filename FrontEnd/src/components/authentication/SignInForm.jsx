@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../SigningForms.css';
+import FeedbackCard from '../FeedbackCard.jsx';
 
 import { checkSignIn } from './authenticationHelpers.js';
 
@@ -9,7 +10,8 @@ export const SignInForm = ({ handleSignIn }) => {
         email: '',
         password: ''
     });
-
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -26,15 +28,27 @@ export const SignInForm = ({ handleSignIn }) => {
             const signInStatus = await checkSignIn(signIn);
             if (signInStatus) {
                 await handleSignIn(signIn);
+                setFeedbackMessage('Successfully signed-in.');
                 navigate('/');
             }
         } catch (error) {
             console.error('Error during sign-in:', error);
+            if (error.response && error.response.status === 401) {
+                setError(true);
+                setFeedbackMessage('Invalid credentials. Please try again.');
+            } else if (error.response && error.response.status === 422) {
+                setError(true);
+                setFeedbackMessage('No account found with this email. Please sign up.');
+            } else {
+                setError(true);
+                setFeedbackMessage('An unexpected error occurred. Please try again later.');
+            }
         }
     }
 
     return (
         <div className="signin-form">
+            {error && (<FeedbackCard feedbackMessage={feedbackMessage} />)}
             {/* <h2 className="fs">Sign In</h2> */}
             <form onSubmit={signInSubmitHandler}>
                 <label htmlFor="email">Email:</label>

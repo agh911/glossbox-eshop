@@ -78,6 +78,7 @@ export const SignUpForm = () => {
                     value={signUp.password}
                     onChange={handleChange}
                     placeholder="Your secure password"
+                    minLength={12}
                     required
                 />
                 <button className="font-bold " type="submit">Sign Up</button>
