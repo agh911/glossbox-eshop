@@ -96,3 +96,27 @@ input#quantity {
 input#quantity::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+/* AddToBagModal */
+.modal {
+    position: absolute;
+    height: auto;
+    width: 365px;
+    z-index: 9999;
+    top: -60%;
+    left: 67.25%;
+    transform: translate(-52%, -50%);
+}
+
+.modal-content {
+    background-color: #faf4ef;
+    border: .1px solid rgba(62, 43, 46, .8);
+    border-radius: 3px;
+}
+
+/* FeedbackCard */
+.card-content {
+    background-color: #faf4ef;
+    border: .1px solid rgba(62, 43, 46, .8);
+    border-radius: 3px;
+}
