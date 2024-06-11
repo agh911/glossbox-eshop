@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import QuantityInput from '../components/QuantityInput.jsx';
 import AddToBagModal from '../components/AddToBagModal';
 import ReviewCard from '../components/ReviewCard';
+import AuthModal from '../components/AuthModal';
 import './SingleProductPage.css';
 
 import { getSingleProductData, addToBasket } from '../../utils/dataService.js';
@@ -18,6 +19,7 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
     const [buttonText, setButtonText] = useState('Sort by');
     const [showModal, setShowModal] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [showAuthModal, setShowAuthModal] = useState(false);
 
     useEffect(() => {
         const fetchProductData = async () => {
@@ -34,6 +36,11 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
     }, [id, navigate]);
 
     const handleAddToBag = async () => {
+        if (!user || !user._id) {
+            setShowAuthModal(true);
+            return;
+        }
+
         try {
             const userId = user._id;
 
@@ -65,6 +72,10 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
 
     const closeModal = () => {
         setShowModal(false);
+    };
+
+    const closeAuthModal = () => {
+        setShowAuthModal(false);
     };
 
     return (
@@ -129,6 +140,7 @@ const SingleProduct = ({ user, setNumberOfItems }) => {
                                     </button>
                                 </div>
                                 <AddToBagModal showModal={showModal} closeModal={closeModal} isSuccess={isSuccess} />
+                                <AuthModal showAuthModal={showAuthModal} closeAuthModal={closeAuthModal} />
                             </div>
                         </div>
                     </div>
